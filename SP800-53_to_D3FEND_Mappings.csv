@@ -1,0 +1,181 @@
+SP 800-53 Control,D3FEND Technique
+AC-2(1),Account Locking
+AC-2(1),Multi-factor Authentication
+AC-2(2),Account Locking
+AC-2(3),Account Locking
+AC-2(4),Domain Account Monitoring
+AC-2(5),Account Locking
+AC-2(7),User Account Permissions
+AC-2(9),User Account Permissions
+AC-2(13),Account Locking
+AC-3,Executable Allowlisting
+AC-3,Executable Denylisting
+AC-3(8),System Call Filtering
+AC-4,Inbound Traffic Filtering
+AC-4,Outbound Traffic Filtering
+AC-4(1),Inbound Traffic Filtering
+AC-4(1),Outbound Traffic Filtering
+AC-4(3),Inbound Traffic Filtering
+AC-4(3),Outbound Traffic Filtering
+AC-4(4),Inbound Traffic Filtering
+AC-4(4),Outbound Traffic Filtering
+AC-4(5),Inbound Traffic Filtering
+AC-4(5),Outbound Traffic Filtering
+AC-4(6),Inbound Traffic Filtering
+AC-4(6),Outbound Traffic Filtering
+AC-4(8),Inbound Traffic Filtering
+AC-4(8),Outbound Traffic Filtering
+AC-4(10),Inbound Traffic Filtering
+AC-4(10),Outbound Traffic Filtering
+AC-4(11),Inbound Traffic Filtering
+AC-4(11),Outbound Traffic Filtering
+AC-4(12),Inbound Traffic Filtering
+AC-4(12),Outbound Traffic Filtering
+AC-4(13),Inbound Traffic Filtering
+AC-4(13),Outbound Traffic Filtering
+AC-4(14),Inbound Traffic Filtering
+AC-4(14),Outbound Traffic Filtering
+AC-4(15),Inbound Traffic Filtering
+AC-4(15),Outbound Traffic Filtering
+AC-4(17),Domain Trust Policy
+AC-4(19),Inbound Traffic Filtering
+AC-4(19),Outbound Traffic Filtering
+AC-4(20),Inbound Traffic Filtering
+AC-4(20),Outbound Traffic Filtering
+AC-4(21),Inbound Traffic Filtering
+AC-4(21),Outbound Traffic Filtering
+AC-4(26),File Content Rules
+AC-4(27),Inbound Traffic Filtering
+AC-4(27),Outbound Traffic Filtering
+AC-4(28),Inbound Traffic Filtering
+AC-4(28),Outbound Traffic Filtering
+AC-4(29),Inbound Traffic Filtering
+AC-4(29),Outbound Traffic Filtering
+AC-4(30),Inbound Traffic Filtering
+AC-4(30),Outbound Traffic Filtering
+AC-4(32),Inbound Traffic Filtering
+AC-4(32),Outbound Traffic Filtering
+AC-5,Local File Permissions
+AC-5,User Account Permissions
+AC-6,Local File Permissions
+AC-6,User Account Permissions
+AC-6(1),System Configuration Permissions
+AC-6(3),System Configuration Permissions
+AC-6(4),Hardware-based Process Isolation
+AC-6(5),Local File Permissions
+AC-6(5),System Configuration Permissions
+AC-6(6),Local File Permissions
+AC-6(6),System Configuration Permissions
+AC-6(9),Local Account Monitoring
+AC-6(9),User Behavior Analysis
+AC-6(10),Local File Permissions
+AC-6(10),System Configuration Permissions
+AC-7,Account Locking
+AC-7(3),Account Locking
+AC-7(4),Account Locking
+AC-17(8),Executable Denylisting
+AC-23,Job Function Access Pattern Analysis
+AC-23,Local Account Monitoring
+AC-23,Resource Access Pattern Analysis
+AC-23,User Data Transfer Analysis
+AC-24(1),User Account Permissions
+AC-24(2),User Account Permissions
+AU-2,Local Account Monitoring
+AU-2(1),Local Account Monitoring
+AU-2(2),Local Account Monitoring
+AU-3,Local Account Monitoring
+AU-4,Local Account Monitoring
+AU-10(5),Driver Load Integrity Checking
+AU-14(2),Local Account Monitoring
+AU-15,Local Account Monitoring
+CM-5,Executable Allowlisting
+CM-5,Executable Denylisting
+CM-5,Local Account Monitoring
+CM-5(1),Local Account Monitoring
+CM-5(3),Local Account Monitoring
+CM-5(3),System Configuration Permissions
+CM-5(5),Local Account Monitoring
+CM-5(5),System Configuration Permissions
+CM-5(6),Local Account Monitoring
+CM-5(6),System Configuration Permissions
+CM-6(3),Application Configuration Hardening
+CM-14,Driver Load Integrity Checking
+CM-14,Message Authentication
+IA-2(1),Multi-factor Authentication
+IA-2(2),Multi-factor Authentication
+IA-2(4),Local Account Monitoring
+IA-2(6),Multi-factor Authentication
+IR-4(12),Dynamic Analysis
+IR-4(13),Decoy Environment
+IR-4(13),Decoy Object
+MA-3(3),User Account Permissions
+MA-3(4),User Account Permissions
+MA-3(5),User Account Permissions
+MA-3(6),Software Update
+MA-4(1),Local Account Monitoring
+MA-6,Software Update
+MA-6(1),Software Update
+MA-6(2),Software Update
+MA-6(3),Software Update
+RA-3(3),File Analysis
+RA-3(3),Identifier Analysis
+RA-3(3),Message Analysis
+RA-3(3),Network Traffic Analysis
+RA-3(3),Platform Monitoring
+RA-3(3),Process Analysis
+RA-3(3),User Behavior Analysis
+RA-3(4),File Analysis
+RA-3(4),Identifier Analysis
+RA-3(4),Message Analysis
+RA-3(4),Network Traffic Analysis
+RA-3(4),Platform Monitoring
+RA-3(4),Process Analysis
+RA-3(4),User Behavior Analysis
+RA-5,Network Traffic Analysis
+RA-5(2),Network Traffic Analysis
+RA-5(3),Network Traffic Analysis
+RA-5(4),Decoy Environment
+RA-5(4),Decoy Object
+RA-5(5),Platform Hardening
+RA-5(6),Platform Hardening
+RA-5(7),Executable Allowlisting
+RA-5(7),Executable Denylisting
+SA-8(18),Encrypted Tunnels
+SA-8(22),Domain Account Monitoring
+SA-10(1),Firmware Verification
+SA-10(1),Platform Hardening
+SA-10(3),Firmware Verification
+SA-10(4),Firmware Verification
+SA-10(5),Firmware Verification
+SA-10(5),Platform Hardening
+SA-10(6),Firmware Verification
+SA-10(6),Platform Hardening
+SA-11(1),Application Hardening
+SA-11(8),Application Hardening
+SC-2,Local File Permissions
+SC-2,System Configuration Permissions
+SC-2(1),Local File Permissions
+SC-2(1),System Configuration Permissions
+SC-3,Execution Isolation
+SC-3,Network Isolation
+SC-3(1),Execution Isolation
+SI-2(4),Software Update
+SI-2(5),Firmware Verification
+SI-2(5),Peripheral Firmware Verification
+SI-2(5),Software Update
+SI-2(5),System Firmware Verification
+SI-2(6),Firmware Verification
+SI-2(6),Peripheral Firmware Verification
+SI-2(6),Software Update
+SI-2(6),System Firmware Verification
+SI-3,File Analysis
+SI-3,Network Traffic Analysis
+SI-3,Platform Monitoring
+SI-3,Process Analysis
+SI-3(4),Local File Permissions
+SI-3(4),System Configuration Permissions
+SI-3(8),User Behavior Analysis
+SI-3(10),Dynamic Analysis
+SI-4,Operating System Monitoring
+SI-4(2),Network Traffic Analysis
+SI-4(4),Network Traffic Analysis
