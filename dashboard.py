@@ -44,7 +44,7 @@ def publication_table(df, title=None, colwidths=None):
 
 # Load ontology
 g = Graph()
-g.parse("RiskOnto_v1-worked.owl", format="xml")
+g.parse("RiskOnto_v1.owl", format="xml")
 
 # Namespaces (match your OWL)
 RISK = Namespace("https://cs.unb.ca/ontologies/riskonto#")         # <-- fix: real base
