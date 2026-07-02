@@ -1,0 +1,2285 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix riskonto: <https://cs.unb.ca/ontologies/riskonto#> .
+@prefix wg: <https://cs.unb.ca/ontologies/sut/webgoat#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://cs.unb.ca/ontologies/sut/webgoat> a owl:Ontology ;
+    rdfs:label "WebGoat SUT Ontology — SUT-2B Population"^^xsd:string ;
+    rdfs:comment "WebGoat System Under Test ontology populated from SUT-2A certified scanner evidence. 43 canonical security findings, 13 RiskOnto reasoning candidates. Generated: 2026-06-10. Global Ontology UNMODIFIED."^^xsd:string ;
+    owl:imports <https://cs.unb.ca/ontologies/riskonto/2.4> ;
+    owl:versionIRI <https://cs.unb.ca/ontologies/sut/webgoat/2.0> .
+
+wg:App_WebGoat a owl:NamedIndividual,
+        riskonto:SystemUnderTest ;
+    rdfs:label "WebGoat Application (SUT-2B)"^^xsd:string ;
+    riskonto:Source "https://github.com/WebGoat/WebGoat"^^xsd:string ;
+    riskonto:defaultSeverity "High"^^xsd:string ;
+    riskonto:description "OWASP WebGoat 2023.4 — deliberately insecure Spring Boot web application for security training. SUT-2B population from 5-scanner evidence: Semgrep, SonarQube Issues, SonarQube Hotspots, Snyk SCA, ZAP DAST."^^xsd:string ;
+    wg:hasAsset wg:Asset_AdminInterface,
+        wg:Asset_AuthService,
+        wg:Asset_FileUpload,
+        wg:Asset_LessonEngine,
+        wg:Asset_LoginModule,
+        wg:Asset_REST_API,
+        wg:Asset_SessionMgr,
+        wg:Asset_UserMgmt,
+        wg:Asset_WebGoatApp,
+        wg:Asset_WebGoatDB .
+
+wg:affectsAsset a owl:ObjectProperty ;
+    rdfs:label "CanonicalSecurityFinding affectsAsset Asset"^^xsd:string ;
+    rdfs:domain wg:CanonicalSecurityFinding ;
+    rdfs:range riskonto:Asset .
+
+wg:canonicalFindingId a owl:DatatypeProperty ;
+    rdfs:label "Canonical finding ID from SUT-2A normalization (CV-NNN)"^^xsd:string ;
+    rdfs:range xsd:string .
+
+wg:classification a owl:DatatypeProperty ;
+    rdfs:label "Vulnerability classification (ExploitableVulnerability, DependencyWeakness, etc.)"^^xsd:string ;
+    rdfs:range xsd:string .
+
+wg:containsFinding a owl:ObjectProperty ;
+    rdfs:label "EvidenceBundle containsFinding ScannerFinding"^^xsd:string ;
+    rdfs:domain wg:EvidenceBundle ;
+    rdfs:range riskonto:ScannerFinding .
+
+wg:eligibleForReasoning a owl:DatatypeProperty ;
+    rdfs:label "Whether this finding activates RiskOnto SWRL reasoning"^^xsd:string ;
+    rdfs:range xsd:string .
+
+wg:fromScanner a owl:DatatypeProperty ;
+    rdfs:label "Scanner name that produced this finding"^^xsd:string ;
+    rdfs:range xsd:string .
+
+wg:hasAsset a owl:ObjectProperty ;
+    rdfs:label "SystemUnderTest hasAsset Asset"^^xsd:string ;
+    rdfs:domain riskonto:SystemUnderTest ;
+    rdfs:range riskonto:Asset .
+
+wg:hasThreatScenario a owl:ObjectProperty ;
+    rdfs:label "CanonicalSecurityFinding hasThreatScenario ThreatScenario"^^xsd:string ;
+    rdfs:domain wg:CanonicalSecurityFinding ;
+    rdfs:range riskonto:ThreatScenario .
+
+wg:rawFindingIds a owl:DatatypeProperty ;
+    rdfs:label "Comma-separated list of raw finding IDs (SEM-NNN, SQI-NNN, etc.)"^^xsd:string ;
+    rdfs:range xsd:string .
+
+wg:sourceCount a owl:DatatypeProperty ;
+    rdfs:label "Number of raw scanner findings supporting this canonical finding"^^xsd:string ;
+    rdfs:range xsd:string .
+
+wg:supportedBy a owl:ObjectProperty ;
+    rdfs:label "CanonicalSecurityFinding supportedBy EvidenceBundle"^^xsd:string ;
+    rdfs:domain wg:CanonicalSecurityFinding ;
+    rdfs:range riskonto:EvidenceBundle .
+
+wg:Asset_UserMgmt a owl:NamedIndividual,
+        riskonto:WebApplication ;
+    rdfs:label "WebGoat User Management"^^xsd:string ;
+    riskonto:description "User registration, profile management, and account administration components."^^xsd:string .
+
+wg:EvidenceBundle_Authentication_Bypass a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: Authentication Bypass"^^xsd:string ;
+    riskonto:description "Scanner evidence for Authentication Bypass. Scanners: Snyk_SCA. Raw finding IDs: SNYK-061, SNYK-062, SNYK-063, SNYK-064. Total raw findings: 4."^^xsd:string ;
+    wg:containsFinding wg:SF_Authentication_Bypass_Snyk_SCA ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-061, SNYK-062, SNYK-063, SNYK-064"^^xsd:string .
+
+wg:EvidenceBundle_Clickjacking_Missing_Frame_Options a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: Clickjacking (Missing Frame Options)"^^xsd:string ;
+    riskonto:description "Scanner evidence for Clickjacking (Missing Frame Options). Scanners: ZAP_DAST. Raw finding IDs: ZAP-003. Total raw findings: 1."^^xsd:string ;
+    wg:containsFinding wg:SF_Clickjacking_Missing_Frame_Options_ZAP_DAST ;
+    wg:fromScanner "ZAP_DAST"^^xsd:string ;
+    wg:rawFindingIds "ZAP-003"^^xsd:string .
+
+wg:EvidenceBundle_Code_Injection a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: Code Injection"^^xsd:string ;
+    riskonto:description "Scanner evidence for Code Injection. Scanners: Snyk_SCA. Raw finding IDs: SNYK-022, SNYK-027, SNYK-039. Total raw findings: 3."^^xsd:string ;
+    wg:containsFinding wg:SF_Code_Injection_Snyk_SCA ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-022, SNYK-027, SNYK-039"^^xsd:string .
+
+wg:EvidenceBundle_Cross_Site_Request_Forgery a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: Cross-Site Request Forgery"^^xsd:string ;
+    riskonto:description "Scanner evidence for Cross-Site Request Forgery. Scanners: SonarQube_Hotspots, ZAP_DAST. Raw finding IDs: SQH-016, SQH-017, SQH-018, SQH-019, SQH-020, SQH-021, SQH-022, SQH-023, SQH-024, SQH-025.... Total raw findings: 17."^^xsd:string ;
+    wg:containsFinding wg:SF_Cross_Site_Request_Forgery_SonarQube_Hotspots,
+        wg:SF_Cross_Site_Request_Forgery_ZAP_DAST ;
+    wg:fromScanner "SonarQube_Hotspots, ZAP_DAST"^^xsd:string ;
+    wg:rawFindingIds "SQH-016, SQH-017, SQH-018, SQH-019, SQH-020, SQH-021, SQH-022, SQH-023, SQH-024, SQH-025, SQH-026, SQH-027, SQH-028, SQH-029, SQH-030, SQH-031, ZAP-001"^^xsd:string .
+
+wg:EvidenceBundle_Denial_of_Service_Resource_Exhaustion a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: Denial of Service (Resource Exhaustion)"^^xsd:string ;
+    riskonto:description "Scanner evidence for Denial of Service (Resource Exhaustion). Scanners: Snyk_SCA, SonarQube_Hotspots. Raw finding IDs: SNYK-034, SNYK-036, SNYK-038, SNYK-052, SNYK-054, SQH-043, SQH-044, SQH-045. Total raw findings: 8."^^xsd:string ;
+    wg:containsFinding wg:SF_Denial_of_Service_Resource_Exhaustion_Snyk_SCA,
+        wg:SF_Denial_of_Service_Resource_Exhaustion_SonarQube_Hotspots ;
+    wg:fromScanner "Snyk_SCA, SonarQube_Hotspots"^^xsd:string ;
+    wg:rawFindingIds "SNYK-034, SNYK-036, SNYK-038, SNYK-052, SNYK-054, SQH-043, SQH-044, SQH-045"^^xsd:string .
+
+wg:EvidenceBundle_External_Variable_Initialization a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: External Variable Initialization"^^xsd:string ;
+    riskonto:description "Scanner evidence for External Variable Initialization. Scanners: Snyk_SCA. Raw finding IDs: SNYK-001, SNYK-002. Total raw findings: 2."^^xsd:string ;
+    wg:containsFinding wg:SF_External_Variable_Initialization_Snyk_SCA ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-001, SNYK-002"^^xsd:string .
+
+wg:EvidenceBundle_HTTP_Request_Smuggling a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: HTTP Request Smuggling"^^xsd:string ;
+    riskonto:description "Scanner evidence for HTTP Request Smuggling. Scanners: Snyk_SCA. Raw finding IDs: SNYK-049, SNYK-059. Total raw findings: 2."^^xsd:string ;
+    wg:containsFinding wg:SF_HTTP_Request_Smuggling_Snyk_SCA ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-049, SNYK-059"^^xsd:string .
+
+wg:EvidenceBundle_Improper_Authentication a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: Improper Authentication"^^xsd:string ;
+    riskonto:description "Scanner evidence for Improper Authentication. Scanners: Snyk_SCA, SonarQube_Hotspots. Raw finding IDs: SNYK-046, SNYK-048, SQH-001, SQH-002, SQH-003, SQH-004, SQH-005, SQH-006, SQH-007, SQH-008.... Total raw findings: 17."^^xsd:string ;
+    wg:containsFinding wg:SF_Improper_Authentication_Snyk_SCA,
+        wg:SF_Improper_Authentication_SonarQube_Hotspots ;
+    wg:fromScanner "Snyk_SCA, SonarQube_Hotspots"^^xsd:string ;
+    wg:rawFindingIds "SNYK-046, SNYK-048, SQH-001, SQH-002, SQH-003, SQH-004, SQH-005, SQH-006, SQH-007, SQH-008, SQH-009, SQH-010, SQH-011, SQH-012, SQH-013, SQH-014, SQH-015"^^xsd:string .
+
+wg:EvidenceBundle_Improper_Authorization a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: Improper Authorization"^^xsd:string ;
+    riskonto:description "Scanner evidence for Improper Authorization. Scanners: Snyk_SCA. Raw finding IDs: SNYK-045. Total raw findings: 1."^^xsd:string ;
+    wg:containsFinding wg:SF_Improper_Authorization_Snyk_SCA ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-045"^^xsd:string .
+
+wg:EvidenceBundle_Improper_Certificate_Validation a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: Improper Certificate Validation"^^xsd:string ;
+    riskonto:description "Scanner evidence for Improper Certificate Validation. Scanners: Snyk_SCA. Raw finding IDs: SNYK-043. Total raw findings: 1."^^xsd:string ;
+    wg:containsFinding wg:SF_Improper_Certificate_Validation_Snyk_SCA ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-043"^^xsd:string .
+
+wg:EvidenceBundle_Improper_Certificate_Validation_hostname a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: Improper Certificate Validation (hostname)"^^xsd:string ;
+    riskonto:description "Scanner evidence for Improper Certificate Validation (hostname). Scanners: Snyk_SCA. Raw finding IDs: SNYK-065, SNYK-066. Total raw findings: 2."^^xsd:string ;
+    wg:containsFinding wg:SF_Improper_Certificate_Validation_hostname_Snyk_SCA ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-065, SNYK-066"^^xsd:string .
+
+wg:EvidenceBundle_Improper_Input_Validation a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: Improper Input Validation"^^xsd:string ;
+    riskonto:description "Scanner evidence for Improper Input Validation. Scanners: Snyk_SCA, ZAP_DAST. Raw finding IDs: SNYK-037, ZAP-010. Total raw findings: 2."^^xsd:string ;
+    wg:containsFinding wg:SF_Improper_Input_Validation_Snyk_SCA,
+        wg:SF_Improper_Input_Validation_ZAP_DAST ;
+    wg:fromScanner "Snyk_SCA, ZAP_DAST"^^xsd:string ;
+    wg:rawFindingIds "SNYK-037, ZAP-010"^^xsd:string .
+
+wg:EvidenceBundle_Improper_Output_Encoding a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: Improper Output Encoding"^^xsd:string ;
+    riskonto:description "Scanner evidence for Improper Output Encoding. Scanners: Snyk_SCA. Raw finding IDs: SNYK-047. Total raw findings: 1."^^xsd:string ;
+    wg:containsFinding wg:SF_Improper_Output_Encoding_Snyk_SCA ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-047"^^xsd:string .
+
+wg:EvidenceBundle_Improper_Resource_Shutdown a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: Improper Resource Shutdown"^^xsd:string ;
+    riskonto:description "Scanner evidence for Improper Resource Shutdown. Scanners: Snyk_SCA. Raw finding IDs: SNYK-042. Total raw findings: 1."^^xsd:string ;
+    wg:containsFinding wg:SF_Improper_Resource_Shutdown_Snyk_SCA ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-042"^^xsd:string .
+
+wg:EvidenceBundle_Inadequate_Encryption_Strength a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: Inadequate Encryption Strength"^^xsd:string ;
+    riskonto:description "Scanner evidence for Inadequate Encryption Strength. Scanners: SonarQube_Hotspots. Raw finding IDs: SQH-046, SQH-047, SQH-048, SQH-049, SQH-050, SQH-051, SQH-052, SQH-053, SQH-054, SQH-055.... Total raw findings: 15."^^xsd:string ;
+    wg:containsFinding wg:SF_Inadequate_Encryption_Strength_SonarQube_Hotspots ;
+    wg:fromScanner "SonarQube_Hotspots"^^xsd:string ;
+    wg:rawFindingIds "SQH-046, SQH-047, SQH-048, SQH-049, SQH-050, SQH-051, SQH-052, SQH-053, SQH-054, SQH-055, SQH-056, SQH-057, SQH-058, SQH-059, SQH-060"^^xsd:string .
+
+wg:EvidenceBundle_Incomplete_Cleanup a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: Incomplete Cleanup"^^xsd:string ;
+    riskonto:description "Scanner evidence for Incomplete Cleanup. Scanners: Snyk_SCA. Raw finding IDs: SNYK-056. Total raw findings: 1."^^xsd:string ;
+    wg:containsFinding wg:SF_Incomplete_Cleanup_Snyk_SCA ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-056"^^xsd:string .
+
+wg:EvidenceBundle_Incorrect_Authorization a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: Incorrect Authorization"^^xsd:string ;
+    riskonto:description "Scanner evidence for Incorrect Authorization. Scanners: Snyk_SCA. Raw finding IDs: SNYK-044. Total raw findings: 1."^^xsd:string ;
+    wg:containsFinding wg:SF_Incorrect_Authorization_Snyk_SCA ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-044"^^xsd:string .
+
+wg:EvidenceBundle_Information_Exposure a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: Information Exposure"^^xsd:string ;
+    riskonto:description "Scanner evidence for Information Exposure. Scanners: Snyk_SCA. Raw finding IDs: SNYK-035. Total raw findings: 1."^^xsd:string ;
+    wg:containsFinding wg:SF_Information_Exposure_Snyk_SCA ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-035"^^xsd:string .
+
+wg:EvidenceBundle_Information_Exposure_via_Debug_Actuator a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: Information Exposure via Debug / Actuator"^^xsd:string ;
+    riskonto:description "Scanner evidence for Information Exposure via Debug / Actuator. Scanners: ZAP_DAST. Raw finding IDs: ZAP-004. Total raw findings: 1."^^xsd:string ;
+    wg:containsFinding wg:SF_Information_Exposure_via_Debug_Actuator_ZAP_DAST ;
+    wg:fromScanner "ZAP_DAST"^^xsd:string ;
+    wg:rawFindingIds "ZAP-004"^^xsd:string .
+
+wg:EvidenceBundle_Injection_Generic a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: Injection (Generic)"^^xsd:string ;
+    riskonto:description "Scanner evidence for Injection (Generic). Scanners: Snyk_SCA. Raw finding IDs: SNYK-055, SNYK-057. Total raw findings: 2."^^xsd:string ;
+    wg:containsFinding wg:SF_Injection_Generic_Snyk_SCA ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-055, SNYK-057"^^xsd:string .
+
+wg:EvidenceBundle_Insecure_Configuration a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: Insecure Configuration"^^xsd:string ;
+    riskonto:description "Scanner evidence for Insecure Configuration. Scanners: SonarQube_Hotspots. Raw finding IDs: SQH-061, SQH-062, SQH-063, SQH-064. Total raw findings: 4."^^xsd:string ;
+    wg:containsFinding wg:SF_Insecure_Configuration_SonarQube_Hotspots ;
+    wg:fromScanner "SonarQube_Hotspots"^^xsd:string ;
+    wg:rawFindingIds "SQH-061, SQH-062, SQH-063, SQH-064"^^xsd:string .
+
+wg:EvidenceBundle_Insecure_Cookie_SameSite_Attribute_Missing a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: Insecure Cookie (SameSite Attribute Missing)"^^xsd:string ;
+    riskonto:description "Scanner evidence for Insecure Cookie (SameSite Attribute Missing). Scanners: ZAP_DAST. Raw finding IDs: ZAP-005. Total raw findings: 1."^^xsd:string ;
+    wg:containsFinding wg:SF_Insecure_Cookie_SameSite_Attribute_Missing_ZAP_DAST ;
+    wg:fromScanner "ZAP_DAST"^^xsd:string ;
+    wg:rawFindingIds "ZAP-005"^^xsd:string .
+
+wg:EvidenceBundle_Insecure_Deserialization a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: Insecure Deserialization"^^xsd:string ;
+    riskonto:description "Scanner evidence for Insecure Deserialization. Scanners: Snyk_SCA. Raw finding IDs: SNYK-005, SNYK-008, SNYK-009, SNYK-010, SNYK-011, SNYK-012, SNYK-013, SNYK-014, SNYK-015, SNYK-016.... Total raw findings: 17."^^xsd:string ;
+    wg:containsFinding wg:SF_Insecure_Deserialization_Snyk_SCA ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-005, SNYK-008, SNYK-009, SNYK-010, SNYK-011, SNYK-012, SNYK-013, SNYK-014, SNYK-015, SNYK-016, SNYK-017, SNYK-018, SNYK-019, SNYK-031, SNYK-032, SNYK-033, SNYK-040"^^xsd:string .
+
+wg:EvidenceBundle_Insecure_Temporary_File a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: Insecure Temporary File"^^xsd:string ;
+    riskonto:description "Scanner evidence for Insecure Temporary File. Scanners: Snyk_SCA. Raw finding IDs: SNYK-068. Total raw findings: 1."^^xsd:string ;
+    wg:containsFinding wg:SF_Insecure_Temporary_File_Snyk_SCA ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-068"^^xsd:string .
+
+wg:EvidenceBundle_Insufficient_Data_Authenticity_Verification a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: Insufficient Data Authenticity Verification"^^xsd:string ;
+    riskonto:description "Scanner evidence for Insufficient Data Authenticity Verification. Scanners: Snyk_SCA. Raw finding IDs: SNYK-073. Total raw findings: 1."^^xsd:string ;
+    wg:containsFinding wg:SF_Insufficient_Data_Authenticity_Verification_Snyk_SCA ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-073"^^xsd:string .
+
+wg:EvidenceBundle_Memory_Allocation_with_Excessive_Size a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: Memory Allocation with Excessive Size"^^xsd:string ;
+    riskonto:description "Scanner evidence for Memory Allocation with Excessive Size. Scanners: Snyk_SCA. Raw finding IDs: SNYK-053. Total raw findings: 1."^^xsd:string ;
+    wg:containsFinding wg:SF_Memory_Allocation_with_Excessive_Size_Snyk_SCA ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-053"^^xsd:string .
+
+wg:EvidenceBundle_Missing_Security_Header_CSP_X_Content_Type a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: Missing Security Header (CSP / X-Content-Type)"^^xsd:string ;
+    riskonto:description "Scanner evidence for Missing Security Header (CSP / X-Content-Type). Scanners: ZAP_DAST. Raw finding IDs: ZAP-002, ZAP-006. Total raw findings: 2."^^xsd:string ;
+    wg:containsFinding wg:SF_Missing_Security_Header_CSP_X_Content_Type_ZAP_DAST ;
+    wg:fromScanner "ZAP_DAST"^^xsd:string ;
+    wg:rawFindingIds "ZAP-002, ZAP-006"^^xsd:string .
+
+wg:EvidenceBundle_Observable_Differences_in_Behavior a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: Observable Differences in Behavior"^^xsd:string ;
+    riskonto:description "Scanner evidence for Observable Differences in Behavior. Scanners: Snyk_SCA. Raw finding IDs: SNYK-072. Total raw findings: 1."^^xsd:string ;
+    wg:containsFinding wg:SF_Observable_Differences_in_Behavior_Snyk_SCA ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-072"^^xsd:string .
+
+wg:EvidenceBundle_Open_Redirect a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: Open Redirect"^^xsd:string ;
+    riskonto:description "Scanner evidence for Open Redirect. Scanners: Semgrep, Snyk_SCA. Raw finding IDs: SEM-006, SNYK-050. Total raw findings: 2."^^xsd:string ;
+    wg:containsFinding wg:SF_Open_Redirect_Semgrep,
+        wg:SF_Open_Redirect_Snyk_SCA ;
+    wg:fromScanner "Semgrep, Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SEM-006, SNYK-050"^^xsd:string .
+
+wg:EvidenceBundle_Path_Traversal a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: Path Traversal"^^xsd:string ;
+    riskonto:description "Scanner evidence for Path Traversal. Scanners: Semgrep, Snyk_SCA. Raw finding IDs: SEM-007, SEM-017, SNYK-006, SNYK-058. Total raw findings: 4."^^xsd:string ;
+    wg:containsFinding wg:SF_Path_Traversal_Semgrep,
+        wg:SF_Path_Traversal_Snyk_SCA ;
+    wg:fromScanner "Semgrep, Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SEM-007, SEM-017, SNYK-006, SNYK-058"^^xsd:string .
+
+wg:EvidenceBundle_SQL_Injection a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: SQL Injection"^^xsd:string ;
+    riskonto:description "Scanner evidence for SQL Injection. Scanners: Semgrep, SonarQube_Hotspots. Raw finding IDs: SEM-001, SEM-002, SEM-008, SEM-009, SEM-010, SEM-011, SEM-012, SEM-013, SEM-014, SEM-015.... Total raw findings: 22."^^xsd:string ;
+    wg:containsFinding wg:SF_SQL_Injection_Semgrep,
+        wg:SF_SQL_Injection_SonarQube_Hotspots ;
+    wg:fromScanner "Semgrep, SonarQube_Hotspots"^^xsd:string ;
+    wg:rawFindingIds "SEM-001, SEM-002, SEM-008, SEM-009, SEM-010, SEM-011, SEM-012, SEM-013, SEM-014, SEM-015, SEM-016, SQH-032, SQH-033, SQH-034, SQH-035, SQH-036, SQH-037, SQH-038, SQH-039, SQH-040, SQH-041, SQH-042"^^xsd:string .
+
+wg:EvidenceBundle_Server_Side_Request_Forgery a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: Server-Side Request Forgery"^^xsd:string ;
+    riskonto:description "Scanner evidence for Server-Side Request Forgery. Scanners: Semgrep, Snyk_SCA. Raw finding IDs: SEM-005, SNYK-007. Total raw findings: 2."^^xsd:string ;
+    wg:containsFinding wg:SF_Server_Side_Request_Forgery_Semgrep,
+        wg:SF_Server_Side_Request_Forgery_Snyk_SCA ;
+    wg:fromScanner "Semgrep, Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SEM-005, SNYK-007"^^xsd:string .
+
+wg:EvidenceBundle_Server_Side_Template_Injection a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: Server-Side Template Injection"^^xsd:string ;
+    riskonto:description "Scanner evidence for Server-Side Template Injection. Scanners: Snyk_SCA. Raw finding IDs: SNYK-074, SNYK-075, SNYK-076, SNYK-077. Total raw findings: 4."^^xsd:string ;
+    wg:containsFinding wg:SF_Server_Side_Template_Injection_Snyk_SCA ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-074, SNYK-075, SNYK-076, SNYK-077"^^xsd:string .
+
+wg:EvidenceBundle_Symbolic_Link_Following a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: Symbolic Link Following"^^xsd:string ;
+    riskonto:description "Scanner evidence for Symbolic Link Following. Scanners: Snyk_SCA. Raw finding IDs: SNYK-069. Total raw findings: 1."^^xsd:string ;
+    wg:containsFinding wg:SF_Symbolic_Link_Following_Snyk_SCA ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-069"^^xsd:string .
+
+wg:EvidenceBundle_Time_of_Check_to_Time_of_Use_Race_Condition a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: Time-of-Check to Time-of-Use Race Condition"^^xsd:string ;
+    riskonto:description "Scanner evidence for Time-of-Check to Time-of-Use Race Condition. Scanners: Snyk_SCA. Raw finding IDs: SNYK-071. Total raw findings: 1."^^xsd:string ;
+    wg:containsFinding wg:SF_Time_of_Check_to_Time_of_Use_Race_Condition_Snyk_SCA ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-071"^^xsd:string .
+
+wg:EvidenceBundle_Trust_Boundary_Violation a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: Trust Boundary Violation"^^xsd:string ;
+    riskonto:description "Scanner evidence for Trust Boundary Violation. Scanners: Semgrep. Raw finding IDs: SEM-003. Total raw findings: 1."^^xsd:string ;
+    wg:containsFinding wg:SF_Trust_Boundary_Violation_Semgrep ;
+    wg:fromScanner "Semgrep"^^xsd:string ;
+    wg:rawFindingIds "SEM-003"^^xsd:string .
+
+wg:EvidenceBundle_Uncontrolled_Recursion a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: Uncontrolled Recursion"^^xsd:string ;
+    riskonto:description "Scanner evidence for Uncontrolled Recursion. Scanners: Snyk_SCA. Raw finding IDs: SNYK-041. Total raw findings: 1."^^xsd:string ;
+    wg:containsFinding wg:SF_Uncontrolled_Recursion_Snyk_SCA ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-041"^^xsd:string .
+
+wg:EvidenceBundle_Uncontrolled_Resource_Consumption a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: Uncontrolled Resource Consumption"^^xsd:string ;
+    riskonto:description "Scanner evidence for Uncontrolled Resource Consumption. Scanners: Snyk_SCA. Raw finding IDs: SNYK-003, SNYK-004, SNYK-051, SNYK-060. Total raw findings: 4."^^xsd:string ;
+    wg:containsFinding wg:SF_Uncontrolled_Resource_Consumption_Snyk_SCA ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-003, SNYK-004, SNYK-051, SNYK-060"^^xsd:string .
+
+wg:EvidenceBundle_Unrestricted_File_Upload a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: Unrestricted File Upload"^^xsd:string ;
+    riskonto:description "Scanner evidence for Unrestricted File Upload. Scanners: Snyk_SCA. Raw finding IDs: SNYK-020, SNYK-021, SNYK-023, SNYK-024, SNYK-025, SNYK-026, SNYK-028, SNYK-029, SNYK-030. Total raw findings: 9."^^xsd:string ;
+    wg:containsFinding wg:SF_Unrestricted_File_Upload_Snyk_SCA ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-020, SNYK-021, SNYK-023, SNYK-024, SNYK-025, SNYK-026, SNYK-028, SNYK-029, SNYK-030"^^xsd:string .
+
+wg:EvidenceBundle_Use_of_Cache_Containing_Sensitive_Information a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: Use of Cache Containing Sensitive Information"^^xsd:string ;
+    riskonto:description "Scanner evidence for Use of Cache Containing Sensitive Information. Scanners: Snyk_SCA. Raw finding IDs: SNYK-070. Total raw findings: 1."^^xsd:string ;
+    wg:containsFinding wg:SF_Use_of_Cache_Containing_Sensitive_Information_Snyk_SCA ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-070"^^xsd:string .
+
+wg:EvidenceBundle_Weak_Cryptographic_Hash a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: Weak Cryptographic Hash"^^xsd:string ;
+    riskonto:description "Scanner evidence for Weak Cryptographic Hash. Scanners: Semgrep. Raw finding IDs: SEM-004. Total raw findings: 1."^^xsd:string ;
+    wg:containsFinding wg:SF_Weak_Cryptographic_Hash_Semgrep ;
+    wg:fromScanner "Semgrep"^^xsd:string ;
+    wg:rawFindingIds "SEM-004"^^xsd:string .
+
+wg:EvidenceBundle_Weak_PRNG a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: Weak PRNG"^^xsd:string ;
+    riskonto:description "Scanner evidence for Weak PRNG. Scanners: Snyk_SCA. Raw finding IDs: SNYK-067. Total raw findings: 1."^^xsd:string ;
+    wg:containsFinding wg:SF_Weak_PRNG_Snyk_SCA ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-067"^^xsd:string .
+
+wg:EvidenceBundle_Weak_Password_Hashing a owl:NamedIndividual,
+        wg:EvidenceBundle ;
+    rdfs:label "Evidence Bundle: Weak Password Hashing"^^xsd:string ;
+    riskonto:description "Scanner evidence for Weak Password Hashing. Scanners: SonarQube_Issues. Raw finding IDs: SQI-072. Total raw findings: 1."^^xsd:string ;
+    wg:containsFinding wg:SF_Weak_Password_Hashing_SonarQube_Issues ;
+    wg:fromScanner "SonarQube_Issues"^^xsd:string ;
+    wg:rawFindingIds "SQI-072"^^xsd:string .
+
+wg:Finding_Authentication_Bypass a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "Authentication Bypass"^^xsd:string ;
+    riskonto:description "Authentication Bypass (CWE-288) — DependencyWeakness. Evidence from: Snyk_SCA. Raw finding count: 4. No VP mapping in current ontology."^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_Authentication_Bypass ;
+    riskonto:mappedToCWE riskonto:CWE-288 ;
+    riskonto:severity "Critical"^^xsd:string ;
+    wg:affectsAsset wg:Asset_AuthService,
+        wg:Asset_LoginModule ;
+    wg:canonicalFindingId "CV-013"^^xsd:string ;
+    wg:classification "DependencyWeakness"^^xsd:string ;
+    wg:eligibleForReasoning "NO"^^xsd:string ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_Authentication_Bypass ;
+    wg:sourceCount "4"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_Authentication_Bypass .
+
+wg:Finding_Clickjacking_Missing_Frame_Options a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "Clickjacking (Missing Frame Options)"^^xsd:string ;
+    riskonto:description "Clickjacking (Missing Frame Options) (CWE-1021) — ConfigurationWeakness. Evidence from: ZAP_DAST. Raw finding count: 1. No VP mapping in current ontology."^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_Clickjacking_Missing_Frame_Options ;
+    riskonto:mappedToCWE riskonto:CWE-1021 ;
+    riskonto:severity "Medium"^^xsd:string ;
+    wg:affectsAsset wg:Asset_WebGoatApp ;
+    wg:canonicalFindingId "CV-001"^^xsd:string ;
+    wg:classification "ConfigurationWeakness"^^xsd:string ;
+    wg:eligibleForReasoning "NO"^^xsd:string ;
+    wg:fromScanner "ZAP_DAST"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_Clickjacking_Missing_Frame_Options ;
+    wg:sourceCount "1"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_Clickjacking_Missing_Frame_Options .
+
+wg:Finding_Code_Injection a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "Code Injection"^^xsd:string ;
+    riskonto:derivedFromFinding riskonto:VulnProfile_Agent_Injection_ES ;
+    riskonto:description "Code Injection (CWE-94) — DependencyWeakness. Evidence from: Snyk_SCA. Raw finding count: 3. VP: VulnProfile_Agent_Injection"^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_Code_Injection ;
+    riskonto:mappedToCWE riskonto:CWE-94 ;
+    riskonto:severity "High"^^xsd:string ;
+    wg:affectsAsset wg:Asset_LessonEngine,
+        wg:Asset_WebGoatApp ;
+    wg:canonicalFindingId "CV-043"^^xsd:string ;
+    wg:classification "DependencyWeakness"^^xsd:string ;
+    wg:eligibleForReasoning "YES"^^xsd:string ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_Code_Injection ;
+    wg:sourceCount "3"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_Code_Injection .
+
+wg:Finding_Cross_Site_Request_Forgery a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "Cross-Site Request Forgery"^^xsd:string ;
+    riskonto:derivedFromFinding riskonto:VulnProfile_Cross_Site_Request_Forgery_ES ;
+    riskonto:description "Cross-Site Request Forgery (CWE-352) — ExploitableVulnerability. Evidence from: SonarQube_Hotspots, ZAP_DAST. Raw finding count: 17. VP: VulnProfile_Cross_Site_Request_Forgery"^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_Cross_Site_Request_Forgery ;
+    riskonto:mappedToCWE riskonto:CWE-352 ;
+    riskonto:severity "High"^^xsd:string ;
+    wg:affectsAsset wg:Asset_SessionMgr,
+        wg:Asset_WebGoatApp ;
+    wg:canonicalFindingId "CV-020"^^xsd:string ;
+    wg:classification "ExploitableVulnerability"^^xsd:string ;
+    wg:eligibleForReasoning "YES"^^xsd:string ;
+    wg:fromScanner "SonarQube_Hotspots, ZAP_DAST"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_Cross_Site_Request_Forgery ;
+    wg:sourceCount "17"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_Cross_Site_Request_Forgery .
+
+wg:Finding_Denial_of_Service_Resource_Exhaustion a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "Denial of Service (Resource Exhaustion)"^^xsd:string ;
+    riskonto:description "Denial of Service (Resource Exhaustion) (CWE-400) — SecurityWeakness. Evidence from: Snyk_SCA, SonarQube_Hotspots. Raw finding count: 8. No VP mapping in current ontology."^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_Denial_of_Service_Resource_Exhaustion ;
+    riskonto:mappedToCWE riskonto:CWE-400 ;
+    riskonto:severity "High"^^xsd:string ;
+    wg:affectsAsset wg:Asset_WebGoatApp ;
+    wg:canonicalFindingId "CV-023"^^xsd:string ;
+    wg:classification "SecurityWeakness"^^xsd:string ;
+    wg:eligibleForReasoning "NO"^^xsd:string ;
+    wg:fromScanner "Snyk_SCA, SonarQube_Hotspots"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_Denial_of_Service_Resource_Exhaustion ;
+    wg:sourceCount "8"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_Denial_of_Service_Resource_Exhaustion .
+
+wg:Finding_External_Variable_Initialization a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "External Variable Initialization"^^xsd:string ;
+    riskonto:description "External Variable Initialization (CWE-454) — DependencyWeakness. Evidence from: Snyk_SCA. Raw finding count: 2. No VP mapping in current ontology."^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_External_Variable_Initialization ;
+    riskonto:mappedToCWE riskonto:CWE-454 ;
+    riskonto:severity "Medium"^^xsd:string ;
+    wg:affectsAsset wg:Asset_WebGoatApp ;
+    wg:canonicalFindingId "CV-027"^^xsd:string ;
+    wg:classification "DependencyWeakness"^^xsd:string ;
+    wg:eligibleForReasoning "NO"^^xsd:string ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_External_Variable_Initialization ;
+    wg:sourceCount "2"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_External_Variable_Initialization .
+
+wg:Finding_HTTP_Request_Smuggling a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "HTTP Request Smuggling"^^xsd:string ;
+    riskonto:description "HTTP Request Smuggling (CWE-444) — DependencyWeakness. Evidence from: Snyk_SCA. Raw finding count: 2. No VP mapping in current ontology."^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_HTTP_Request_Smuggling ;
+    riskonto:mappedToCWE riskonto:CWE-444 ;
+    riskonto:severity "High"^^xsd:string ;
+    wg:affectsAsset wg:Asset_WebGoatApp ;
+    wg:canonicalFindingId "CV-026"^^xsd:string ;
+    wg:classification "DependencyWeakness"^^xsd:string ;
+    wg:eligibleForReasoning "NO"^^xsd:string ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_HTTP_Request_Smuggling ;
+    wg:sourceCount "2"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_HTTP_Request_Smuggling .
+
+wg:Finding_Improper_Authentication a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "Improper Authentication"^^xsd:string ;
+    riskonto:derivedFromFinding riskonto:VulnProfile_Weak_MFA_ES ;
+    riskonto:description "Improper Authentication (CWE-287) — ExploitableVulnerability. Evidence from: Snyk_SCA, SonarQube_Hotspots. Raw finding count: 17. VP: VulnProfile_Weak_MFA"^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_Improper_Authentication ;
+    riskonto:mappedToCWE riskonto:CWE-287 ;
+    riskonto:severity "High"^^xsd:string ;
+    wg:affectsAsset wg:Asset_AuthService,
+        wg:Asset_LoginModule ;
+    wg:canonicalFindingId "CV-012"^^xsd:string ;
+    wg:classification "ExploitableVulnerability"^^xsd:string ;
+    wg:eligibleForReasoning "YES"^^xsd:string ;
+    wg:fromScanner "Snyk_SCA, SonarQube_Hotspots"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_Improper_Authentication ;
+    wg:sourceCount "17"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_Improper_Authentication .
+
+wg:Finding_Improper_Authorization a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "Improper Authorization"^^xsd:string ;
+    riskonto:derivedFromFinding riskonto:VulnProfile_Account_Abuse_ES ;
+    riskonto:description "Improper Authorization (CWE-285) — DependencyWeakness. Evidence from: Snyk_SCA. Raw finding count: 1. VP: VulnProfile_Account_Abuse"^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_Improper_Authorization ;
+    riskonto:mappedToCWE riskonto:CWE-285 ;
+    riskonto:severity "Low"^^xsd:string ;
+    wg:affectsAsset wg:Asset_AuthService,
+        wg:Asset_WebGoatApp ;
+    wg:canonicalFindingId "CV-011"^^xsd:string ;
+    wg:classification "DependencyWeakness"^^xsd:string ;
+    wg:eligibleForReasoning "YES"^^xsd:string ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_Improper_Authorization ;
+    wg:sourceCount "1"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_Improper_Authorization .
+
+wg:Finding_Improper_Certificate_Validation a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "Improper Certificate Validation"^^xsd:string ;
+    riskonto:derivedFromFinding riskonto:VulnProfile_Weak_TLS_Configuration_ES ;
+    riskonto:description "Improper Certificate Validation (CWE-295) — DependencyWeakness. Evidence from: Snyk_SCA. Raw finding count: 1. VP: VulnProfile_Weak_TLS_Configuration"^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_Improper_Certificate_Validation ;
+    riskonto:mappedToCWE riskonto:CWE-295 ;
+    riskonto:severity "Critical"^^xsd:string ;
+    wg:affectsAsset wg:Asset_WebGoatApp ;
+    wg:canonicalFindingId "CV-014"^^xsd:string ;
+    wg:classification "DependencyWeakness"^^xsd:string ;
+    wg:eligibleForReasoning "YES"^^xsd:string ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_Improper_Certificate_Validation ;
+    wg:sourceCount "1"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_Improper_Certificate_Validation .
+
+wg:Finding_Improper_Certificate_Validation_hostname a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "Improper Certificate Validation (hostname)"^^xsd:string ;
+    riskonto:description "Improper Certificate Validation (hostname) (CWE-297) — DependencyWeakness. Evidence from: Snyk_SCA. Raw finding count: 2. No VP mapping in current ontology."^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_Improper_Certificate_Validation_hostname ;
+    riskonto:mappedToCWE riskonto:CWE-297 ;
+    riskonto:severity "Low"^^xsd:string ;
+    wg:affectsAsset wg:Asset_WebGoatApp ;
+    wg:canonicalFindingId "CV-015"^^xsd:string ;
+    wg:classification "DependencyWeakness"^^xsd:string ;
+    wg:eligibleForReasoning "NO"^^xsd:string ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_Improper_Certificate_Validation_hostname ;
+    wg:sourceCount "2"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_Improper_Certificate_Validation_hostname .
+
+wg:Finding_Improper_Input_Validation a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "Improper Input Validation"^^xsd:string ;
+    riskonto:description "Improper Input Validation (CWE-20) — SecurityWeakness. Evidence from: Snyk_SCA, ZAP_DAST. Raw finding count: 2. No VP mapping in current ontology."^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_Improper_Input_Validation ;
+    riskonto:mappedToCWE riskonto:CWE-20 ;
+    riskonto:severity "High"^^xsd:string ;
+    wg:affectsAsset wg:Asset_REST_API,
+        wg:Asset_WebGoatApp ;
+    wg:canonicalFindingId "CV-006"^^xsd:string ;
+    wg:classification "SecurityWeakness"^^xsd:string ;
+    wg:eligibleForReasoning "NO"^^xsd:string ;
+    wg:fromScanner "Snyk_SCA, ZAP_DAST"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_Improper_Input_Validation ;
+    wg:sourceCount "2"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_Improper_Input_Validation .
+
+wg:Finding_Improper_Output_Encoding a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "Improper Output Encoding"^^xsd:string ;
+    riskonto:description "Improper Output Encoding (CWE-116) — DependencyWeakness. Evidence from: Snyk_SCA. Raw finding count: 1. No VP mapping in current ontology."^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_Improper_Output_Encoding ;
+    riskonto:mappedToCWE riskonto:CWE-116 ;
+    riskonto:severity "Medium"^^xsd:string ;
+    wg:affectsAsset wg:Asset_WebGoatApp ;
+    wg:canonicalFindingId "CV-002"^^xsd:string ;
+    wg:classification "DependencyWeakness"^^xsd:string ;
+    wg:eligibleForReasoning "NO"^^xsd:string ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_Improper_Output_Encoding ;
+    wg:sourceCount "1"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_Improper_Output_Encoding .
+
+wg:Finding_Improper_Resource_Shutdown a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "Improper Resource Shutdown"^^xsd:string ;
+    riskonto:description "Improper Resource Shutdown (CWE-404) — DependencyWeakness. Evidence from: Snyk_SCA. Raw finding count: 1. No VP mapping in current ontology."^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_Improper_Resource_Shutdown ;
+    riskonto:mappedToCWE riskonto:CWE-404 ;
+    riskonto:severity "Medium"^^xsd:string ;
+    wg:affectsAsset wg:Asset_WebGoatApp ;
+    wg:canonicalFindingId "CV-024"^^xsd:string ;
+    wg:classification "DependencyWeakness"^^xsd:string ;
+    wg:eligibleForReasoning "NO"^^xsd:string ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_Improper_Resource_Shutdown ;
+    wg:sourceCount "1"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_Improper_Resource_Shutdown .
+
+wg:Finding_Inadequate_Encryption_Strength a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "Inadequate Encryption Strength"^^xsd:string ;
+    riskonto:description "Inadequate Encryption Strength (CWE-326) — SecurityWeakness. Evidence from: SonarQube_Hotspots. Raw finding count: 15. No VP mapping in current ontology."^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_Inadequate_Encryption_Strength ;
+    riskonto:mappedToCWE riskonto:CWE-326 ;
+    riskonto:severity "Medium"^^xsd:string ;
+    wg:affectsAsset wg:Asset_AuthService,
+        wg:Asset_WebGoatApp ;
+    wg:canonicalFindingId "CV-016"^^xsd:string ;
+    wg:classification "SecurityWeakness"^^xsd:string ;
+    wg:eligibleForReasoning "NO"^^xsd:string ;
+    wg:fromScanner "SonarQube_Hotspots"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_Inadequate_Encryption_Strength ;
+    wg:sourceCount "15"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_Inadequate_Encryption_Strength .
+
+wg:Finding_Incomplete_Cleanup a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "Incomplete Cleanup"^^xsd:string ;
+    riskonto:description "Incomplete Cleanup (CWE-459) — DependencyWeakness. Evidence from: Snyk_SCA. Raw finding count: 1. No VP mapping in current ontology."^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_Incomplete_Cleanup ;
+    riskonto:mappedToCWE riskonto:CWE-459 ;
+    riskonto:severity "High"^^xsd:string ;
+    wg:affectsAsset wg:Asset_WebGoatApp ;
+    wg:canonicalFindingId "CV-028"^^xsd:string ;
+    wg:classification "DependencyWeakness"^^xsd:string ;
+    wg:eligibleForReasoning "NO"^^xsd:string ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_Incomplete_Cleanup ;
+    wg:sourceCount "1"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_Incomplete_Cleanup .
+
+wg:Finding_Incorrect_Authorization a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "Incorrect Authorization"^^xsd:string ;
+    riskonto:description "Incorrect Authorization (CWE-863) — DependencyWeakness. Evidence from: Snyk_SCA. Raw finding count: 1. No VP mapping in current ontology."^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_Incorrect_Authorization ;
+    riskonto:mappedToCWE riskonto:CWE-863 ;
+    riskonto:severity "High"^^xsd:string ;
+    wg:affectsAsset wg:Asset_AdminInterface,
+        wg:Asset_AuthService ;
+    wg:canonicalFindingId "CV-039"^^xsd:string ;
+    wg:classification "DependencyWeakness"^^xsd:string ;
+    wg:eligibleForReasoning "NO"^^xsd:string ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_Incorrect_Authorization ;
+    wg:sourceCount "1"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_Incorrect_Authorization .
+
+wg:Finding_Information_Exposure a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "Information Exposure"^^xsd:string ;
+    riskonto:derivedFromFinding riskonto:VulnProfile_Public_Storage_Exposure_ES ;
+    riskonto:description "Information Exposure (CWE-200) — DependencyWeakness. Evidence from: Snyk_SCA. Raw finding count: 1. VP: VulnProfile_Public_Storage_Exposure"^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_Information_Exposure ;
+    riskonto:mappedToCWE riskonto:CWE-200 ;
+    riskonto:severity "High"^^xsd:string ;
+    wg:affectsAsset wg:Asset_WebGoatApp ;
+    wg:canonicalFindingId "CV-007"^^xsd:string ;
+    wg:classification "DependencyWeakness"^^xsd:string ;
+    wg:eligibleForReasoning "YES"^^xsd:string ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_Information_Exposure ;
+    wg:sourceCount "1"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_Information_Exposure .
+
+wg:Finding_Information_Exposure_via_Debug_Actuator a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "Information Exposure via Debug / Actuator"^^xsd:string ;
+    riskonto:description "Information Exposure via Debug / Actuator (CWE-215) — ConfigurationWeakness. Evidence from: ZAP_DAST. Raw finding count: 1. No VP mapping in current ontology."^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_Information_Exposure_via_Debug_Actuator ;
+    riskonto:mappedToCWE riskonto:CWE-215 ;
+    riskonto:severity "Medium"^^xsd:string ;
+    wg:affectsAsset wg:Asset_AdminInterface,
+        wg:Asset_WebGoatApp ;
+    wg:canonicalFindingId "CV-009"^^xsd:string ;
+    wg:classification "ConfigurationWeakness"^^xsd:string ;
+    wg:eligibleForReasoning "NO"^^xsd:string ;
+    wg:fromScanner "ZAP_DAST"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_Information_Exposure_via_Debug_Actuator ;
+    wg:sourceCount "1"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_Information_Exposure_via_Debug_Actuator .
+
+wg:Finding_Injection_Generic a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "Injection (Generic)"^^xsd:string ;
+    riskonto:derivedFromFinding riskonto:VulnProfile_XML_Injection_ES ;
+    riskonto:description "Injection (Generic) (CWE-74) — DependencyWeakness. Evidence from: Snyk_SCA. Raw finding count: 2. VP: VulnProfile_XML_Injection"^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_Injection_Generic ;
+    riskonto:mappedToCWE riskonto:CWE-74 ;
+    riskonto:severity "Low"^^xsd:string ;
+    wg:affectsAsset wg:Asset_REST_API,
+        wg:Asset_WebGoatApp ;
+    wg:canonicalFindingId "CV-036"^^xsd:string ;
+    wg:classification "DependencyWeakness"^^xsd:string ;
+    wg:eligibleForReasoning "YES"^^xsd:string ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_Injection_Generic ;
+    wg:sourceCount "2"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_Injection_Generic .
+
+wg:Finding_Insecure_Configuration a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "Insecure Configuration"^^xsd:string ;
+    riskonto:description "Insecure Configuration (CWE-16) — ConfigurationWeakness. Evidence from: SonarQube_Hotspots. Raw finding count: 4. No VP mapping in current ontology."^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_Insecure_Configuration ;
+    riskonto:mappedToCWE riskonto:CWE-16 ;
+    riskonto:severity "Low"^^xsd:string ;
+    wg:affectsAsset wg:Asset_WebGoatApp ;
+    wg:canonicalFindingId "CV-005"^^xsd:string ;
+    wg:classification "ConfigurationWeakness"^^xsd:string ;
+    wg:eligibleForReasoning "NO"^^xsd:string ;
+    wg:fromScanner "SonarQube_Hotspots"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_Insecure_Configuration ;
+    wg:sourceCount "4"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_Insecure_Configuration .
+
+wg:Finding_Insecure_Cookie_SameSite_Attribute_Missing a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "Insecure Cookie (SameSite Attribute Missing)"^^xsd:string ;
+    riskonto:description "Insecure Cookie (SameSite Attribute Missing) (CWE-1275) — ConfigurationWeakness. Evidence from: ZAP_DAST. Raw finding count: 1. No VP mapping in current ontology."^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_Insecure_Cookie_SameSite_Attribute_Missing ;
+    riskonto:mappedToCWE riskonto:CWE-1275 ;
+    riskonto:severity "Low"^^xsd:string ;
+    wg:affectsAsset wg:Asset_SessionMgr,
+        wg:Asset_WebGoatApp ;
+    wg:canonicalFindingId "CV-003"^^xsd:string ;
+    wg:classification "ConfigurationWeakness"^^xsd:string ;
+    wg:eligibleForReasoning "NO"^^xsd:string ;
+    wg:fromScanner "ZAP_DAST"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_Insecure_Cookie_SameSite_Attribute_Missing ;
+    wg:sourceCount "1"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_Insecure_Cookie_SameSite_Attribute_Missing .
+
+wg:Finding_Insecure_Deserialization a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "Insecure Deserialization"^^xsd:string ;
+    riskonto:derivedFromFinding riskonto:VulnProfile_Pickle_Injection_ES ;
+    riskonto:description "Insecure Deserialization (CWE-502) — DependencyWeakness. Evidence from: Snyk_SCA. Raw finding count: 17. VP: VulnProfile_Pickle_Injection"^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_Insecure_Deserialization ;
+    riskonto:mappedToCWE riskonto:CWE-502 ;
+    riskonto:severity "High"^^xsd:string ;
+    wg:affectsAsset wg:Asset_LessonEngine,
+        wg:Asset_WebGoatApp ;
+    wg:canonicalFindingId "CV-030"^^xsd:string ;
+    wg:classification "DependencyWeakness"^^xsd:string ;
+    wg:eligibleForReasoning "YES"^^xsd:string ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_Insecure_Deserialization ;
+    wg:sourceCount "17"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_Insecure_Deserialization .
+
+wg:Finding_Insecure_Temporary_File a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "Insecure Temporary File"^^xsd:string ;
+    riskonto:description "Insecure Temporary File (CWE-377) — DependencyWeakness. Evidence from: Snyk_SCA. Raw finding count: 1. No VP mapping in current ontology."^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_Insecure_Temporary_File ;
+    riskonto:mappedToCWE riskonto:CWE-377 ;
+    riskonto:severity "High"^^xsd:string ;
+    wg:affectsAsset wg:Asset_WebGoatApp ;
+    wg:canonicalFindingId "CV-022"^^xsd:string ;
+    wg:classification "DependencyWeakness"^^xsd:string ;
+    wg:eligibleForReasoning "NO"^^xsd:string ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_Insecure_Temporary_File ;
+    wg:sourceCount "1"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_Insecure_Temporary_File .
+
+wg:Finding_Insufficient_Data_Authenticity_Verification a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "Insufficient Data Authenticity Verification"^^xsd:string ;
+    riskonto:derivedFromFinding riskonto:VulnProfile_Adversarial_AI_Attack_ES ;
+    riskonto:description "Insufficient Data Authenticity Verification (CWE-345) — DependencyWeakness. Evidence from: Snyk_SCA. Raw finding count: 1. VP: VulnProfile_Adversarial_AI_Attack"^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_Insufficient_Data_Authenticity_Verification ;
+    riskonto:mappedToCWE riskonto:CWE-345 ;
+    riskonto:severity "Medium"^^xsd:string ;
+    wg:affectsAsset wg:Asset_WebGoatApp ;
+    wg:canonicalFindingId "CV-019"^^xsd:string ;
+    wg:classification "DependencyWeakness"^^xsd:string ;
+    wg:eligibleForReasoning "YES"^^xsd:string ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_Insufficient_Data_Authenticity_Verification ;
+    wg:sourceCount "1"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_Insufficient_Data_Authenticity_Verification .
+
+wg:Finding_Memory_Allocation_with_Excessive_Size a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "Memory Allocation with Excessive Size"^^xsd:string ;
+    riskonto:description "Memory Allocation with Excessive Size (CWE-789) — DependencyWeakness. Evidence from: Snyk_SCA. Raw finding count: 1. No VP mapping in current ontology."^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_Memory_Allocation_with_Excessive_Size ;
+    riskonto:mappedToCWE riskonto:CWE-789 ;
+    riskonto:severity "High"^^xsd:string ;
+    wg:affectsAsset wg:Asset_WebGoatApp ;
+    wg:canonicalFindingId "CV-038"^^xsd:string ;
+    wg:classification "DependencyWeakness"^^xsd:string ;
+    wg:eligibleForReasoning "NO"^^xsd:string ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_Memory_Allocation_with_Excessive_Size ;
+    wg:sourceCount "1"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_Memory_Allocation_with_Excessive_Size .
+
+wg:Finding_Missing_Security_Header_CSP_X_Content_Type a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "Missing Security Header (CSP / X-Content-Type)"^^xsd:string ;
+    riskonto:description "Missing Security Header (CSP / X-Content-Type) (CWE-693) — ConfigurationWeakness. Evidence from: ZAP_DAST. Raw finding count: 2. No VP mapping in current ontology."^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_Missing_Security_Header_CSP_X_Content_Type ;
+    riskonto:mappedToCWE riskonto:CWE-693 ;
+    riskonto:severity "Medium"^^xsd:string ;
+    wg:affectsAsset wg:Asset_WebGoatApp ;
+    wg:canonicalFindingId "CV-035"^^xsd:string ;
+    wg:classification "ConfigurationWeakness"^^xsd:string ;
+    wg:eligibleForReasoning "NO"^^xsd:string ;
+    wg:fromScanner "ZAP_DAST"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_Missing_Security_Header_CSP_X_Content_Type ;
+    wg:sourceCount "2"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_Missing_Security_Header_CSP_X_Content_Type .
+
+wg:Finding_Observable_Differences_in_Behavior a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "Observable Differences in Behavior"^^xsd:string ;
+    riskonto:description "Observable Differences in Behavior (CWE-203) — DependencyWeakness. Evidence from: Snyk_SCA. Raw finding count: 1. No VP mapping in current ontology."^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_Observable_Differences_in_Behavior ;
+    riskonto:mappedToCWE riskonto:CWE-203 ;
+    riskonto:severity "Medium"^^xsd:string ;
+    wg:affectsAsset wg:Asset_WebGoatApp ;
+    wg:canonicalFindingId "CV-008"^^xsd:string ;
+    wg:classification "DependencyWeakness"^^xsd:string ;
+    wg:eligibleForReasoning "NO"^^xsd:string ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_Observable_Differences_in_Behavior ;
+    wg:sourceCount "1"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_Observable_Differences_in_Behavior .
+
+wg:Finding_Open_Redirect a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "Open Redirect"^^xsd:string ;
+    riskonto:description "Open Redirect (CWE-601) — SecurityWeakness. Evidence from: Semgrep, Snyk_SCA. Raw finding count: 2. No VP mapping in current ontology."^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_Open_Redirect ;
+    riskonto:mappedToCWE riskonto:CWE-601 ;
+    riskonto:severity "Medium"^^xsd:string ;
+    wg:affectsAsset wg:Asset_WebGoatApp ;
+    wg:canonicalFindingId "CV-033"^^xsd:string ;
+    wg:classification "SecurityWeakness"^^xsd:string ;
+    wg:eligibleForReasoning "NO"^^xsd:string ;
+    wg:fromScanner "Semgrep, Snyk_SCA"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_Open_Redirect ;
+    wg:sourceCount "2"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_Open_Redirect .
+
+wg:Finding_Path_Traversal a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "Path Traversal"^^xsd:string ;
+    riskonto:derivedFromFinding riskonto:VulnProfile_Path_Traversal_ES ;
+    riskonto:description "Path Traversal (CWE-22) — ExploitableVulnerability. Evidence from: Semgrep, Snyk_SCA. Raw finding count: 4. VP: VulnProfile_Path_Traversal"^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_Path_Traversal ;
+    riskonto:mappedToCWE riskonto:CWE-22 ;
+    riskonto:severity "High"^^xsd:string ;
+    wg:affectsAsset wg:Asset_FileUpload,
+        wg:Asset_REST_API ;
+    wg:canonicalFindingId "CV-010"^^xsd:string ;
+    wg:classification "ExploitableVulnerability"^^xsd:string ;
+    wg:eligibleForReasoning "YES"^^xsd:string ;
+    wg:fromScanner "Semgrep, Snyk_SCA"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_Path_Traversal ;
+    wg:sourceCount "4"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_Path_Traversal .
+
+wg:Finding_SQL_Injection a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "SQL Injection"^^xsd:string ;
+    riskonto:derivedFromFinding riskonto:VulnProfile_SQL_Injection_ES ;
+    riskonto:description "SQL Injection (CWE-89) — ExploitableVulnerability. Evidence from: Semgrep, SonarQube_Hotspots. Raw finding count: 22. VP: VulnProfile_SQL_Injection"^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_SQL_Injection ;
+    riskonto:mappedToCWE riskonto:CWE-89 ;
+    riskonto:severity "High"^^xsd:string ;
+    wg:affectsAsset wg:Asset_LessonEngine,
+        wg:Asset_REST_API,
+        wg:Asset_WebGoatDB ;
+    wg:canonicalFindingId "CV-040"^^xsd:string ;
+    wg:classification "ExploitableVulnerability"^^xsd:string ;
+    wg:eligibleForReasoning "YES"^^xsd:string ;
+    wg:fromScanner "Semgrep, SonarQube_Hotspots"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_SQL_Injection ;
+    wg:sourceCount "22"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_SQL_Injection .
+
+wg:Finding_Server_Side_Request_Forgery a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "Server-Side Request Forgery"^^xsd:string ;
+    riskonto:description "Server-Side Request Forgery (CWE-918) — SecurityWeakness. Evidence from: Semgrep, Snyk_SCA. Raw finding count: 2. No VP mapping in current ontology."^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_Server_Side_Request_Forgery ;
+    riskonto:mappedToCWE riskonto:CWE-918 ;
+    riskonto:severity "Medium"^^xsd:string ;
+    wg:affectsAsset wg:Asset_WebGoatApp ;
+    wg:canonicalFindingId "CV-042"^^xsd:string ;
+    wg:classification "SecurityWeakness"^^xsd:string ;
+    wg:eligibleForReasoning "NO"^^xsd:string ;
+    wg:fromScanner "Semgrep, Snyk_SCA"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_Server_Side_Request_Forgery ;
+    wg:sourceCount "2"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_Server_Side_Request_Forgery .
+
+wg:Finding_Server_Side_Template_Injection a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "Server-Side Template Injection"^^xsd:string ;
+    riskonto:description "Server-Side Template Injection (CWE-1336) — DependencyWeakness. Evidence from: Snyk_SCA. Raw finding count: 4. No VP mapping in current ontology."^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_Server_Side_Template_Injection ;
+    riskonto:mappedToCWE riskonto:CWE-1336 ;
+    riskonto:severity "Critical"^^xsd:string ;
+    wg:affectsAsset wg:Asset_LessonEngine,
+        wg:Asset_WebGoatApp ;
+    wg:canonicalFindingId "CV-004"^^xsd:string ;
+    wg:classification "DependencyWeakness"^^xsd:string ;
+    wg:eligibleForReasoning "NO"^^xsd:string ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_Server_Side_Template_Injection ;
+    wg:sourceCount "4"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_Server_Side_Template_Injection .
+
+wg:Finding_Symbolic_Link_Following a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "Symbolic Link Following"^^xsd:string ;
+    riskonto:description "Symbolic Link Following (CWE-59) — DependencyWeakness. Evidence from: Snyk_SCA. Raw finding count: 1. No VP mapping in current ontology."^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_Symbolic_Link_Following ;
+    riskonto:mappedToCWE riskonto:CWE-59 ;
+    riskonto:severity "Medium"^^xsd:string ;
+    wg:affectsAsset wg:Asset_FileUpload ;
+    wg:canonicalFindingId "CV-032"^^xsd:string ;
+    wg:classification "DependencyWeakness"^^xsd:string ;
+    wg:eligibleForReasoning "NO"^^xsd:string ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_Symbolic_Link_Following ;
+    wg:sourceCount "1"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_Symbolic_Link_Following .
+
+wg:Finding_Time_of_Check_to_Time_of_Use_Race_Condition a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "Time-of-Check to Time-of-Use Race Condition"^^xsd:string ;
+    riskonto:description "Time-of-Check to Time-of-Use Race Condition (CWE-367) — DependencyWeakness. Evidence from: Snyk_SCA. Raw finding count: 1. No VP mapping in current ontology."^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_Time_of_Check_to_Time_of_Use_Race_Condition ;
+    riskonto:mappedToCWE riskonto:CWE-367 ;
+    riskonto:severity "Medium"^^xsd:string ;
+    wg:affectsAsset wg:Asset_WebGoatApp ;
+    wg:canonicalFindingId "CV-021"^^xsd:string ;
+    wg:classification "DependencyWeakness"^^xsd:string ;
+    wg:eligibleForReasoning "NO"^^xsd:string ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_Time_of_Check_to_Time_of_Use_Race_Condition ;
+    wg:sourceCount "1"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_Time_of_Check_to_Time_of_Use_Race_Condition .
+
+wg:Finding_Trust_Boundary_Violation a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "Trust Boundary Violation"^^xsd:string ;
+    riskonto:description "Trust Boundary Violation (CWE-501) — SecurityWeakness. Evidence from: Semgrep. Raw finding count: 1. No VP mapping in current ontology."^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_Trust_Boundary_Violation ;
+    riskonto:mappedToCWE riskonto:CWE-501 ;
+    riskonto:severity "Medium"^^xsd:string ;
+    wg:affectsAsset wg:Asset_SessionMgr,
+        wg:Asset_WebGoatApp ;
+    wg:canonicalFindingId "CV-029"^^xsd:string ;
+    wg:classification "SecurityWeakness"^^xsd:string ;
+    wg:eligibleForReasoning "NO"^^xsd:string ;
+    wg:fromScanner "Semgrep"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_Trust_Boundary_Violation ;
+    wg:sourceCount "1"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_Trust_Boundary_Violation .
+
+wg:Finding_Uncontrolled_Recursion a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "Uncontrolled Recursion"^^xsd:string ;
+    riskonto:description "Uncontrolled Recursion (CWE-674) — DependencyWeakness. Evidence from: Snyk_SCA. Raw finding count: 1. No VP mapping in current ontology."^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_Uncontrolled_Recursion ;
+    riskonto:mappedToCWE riskonto:CWE-674 ;
+    riskonto:severity "High"^^xsd:string ;
+    wg:affectsAsset wg:Asset_WebGoatApp ;
+    wg:canonicalFindingId "CV-034"^^xsd:string ;
+    wg:classification "DependencyWeakness"^^xsd:string ;
+    wg:eligibleForReasoning "NO"^^xsd:string ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_Uncontrolled_Recursion ;
+    wg:sourceCount "1"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_Uncontrolled_Recursion .
+
+wg:Finding_Uncontrolled_Resource_Consumption a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "Uncontrolled Resource Consumption"^^xsd:string ;
+    riskonto:derivedFromFinding riskonto:VulnProfile_Rate_Limit_Bypass_ES ;
+    riskonto:description "Uncontrolled Resource Consumption (CWE-770) — DependencyWeakness. Evidence from: Snyk_SCA. Raw finding count: 4. VP: VulnProfile_Rate_Limit_Bypass"^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_Uncontrolled_Resource_Consumption ;
+    riskonto:mappedToCWE riskonto:CWE-770 ;
+    riskonto:severity "High"^^xsd:string ;
+    wg:affectsAsset wg:Asset_WebGoatApp ;
+    wg:canonicalFindingId "CV-037"^^xsd:string ;
+    wg:classification "DependencyWeakness"^^xsd:string ;
+    wg:eligibleForReasoning "YES"^^xsd:string ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_Uncontrolled_Resource_Consumption ;
+    wg:sourceCount "4"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_Uncontrolled_Resource_Consumption .
+
+wg:Finding_Unrestricted_File_Upload a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "Unrestricted File Upload"^^xsd:string ;
+    riskonto:derivedFromFinding riskonto:VulnProfile_Malicious_File_Upload_ES ;
+    riskonto:description "Unrestricted File Upload (CWE-434) — DependencyWeakness. Evidence from: Snyk_SCA. Raw finding count: 9. VP: VulnProfile_Malicious_File_Upload"^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_Unrestricted_File_Upload ;
+    riskonto:mappedToCWE riskonto:CWE-434 ;
+    riskonto:severity "High"^^xsd:string ;
+    wg:affectsAsset wg:Asset_FileUpload,
+        wg:Asset_REST_API ;
+    wg:canonicalFindingId "CV-025"^^xsd:string ;
+    wg:classification "DependencyWeakness"^^xsd:string ;
+    wg:eligibleForReasoning "YES"^^xsd:string ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_Unrestricted_File_Upload ;
+    wg:sourceCount "9"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_Unrestricted_File_Upload .
+
+wg:Finding_Use_of_Cache_Containing_Sensitive_Information a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "Use of Cache Containing Sensitive Information"^^xsd:string ;
+    riskonto:description "Use of Cache Containing Sensitive Information (CWE-524) — DependencyWeakness. Evidence from: Snyk_SCA. Raw finding count: 1. No VP mapping in current ontology."^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_Use_of_Cache_Containing_Sensitive_Information ;
+    riskonto:mappedToCWE riskonto:CWE-524 ;
+    riskonto:severity "Critical"^^xsd:string ;
+    wg:affectsAsset wg:Asset_SessionMgr,
+        wg:Asset_WebGoatApp ;
+    wg:canonicalFindingId "CV-031"^^xsd:string ;
+    wg:classification "DependencyWeakness"^^xsd:string ;
+    wg:eligibleForReasoning "NO"^^xsd:string ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_Use_of_Cache_Containing_Sensitive_Information ;
+    wg:sourceCount "1"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_Use_of_Cache_Containing_Sensitive_Information .
+
+wg:Finding_Weak_Cryptographic_Hash a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "Weak Cryptographic Hash"^^xsd:string ;
+    riskonto:description "Weak Cryptographic Hash (CWE-328) — SecurityWeakness. Evidence from: Semgrep. Raw finding count: 1. No VP mapping in current ontology."^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_Weak_Cryptographic_Hash ;
+    riskonto:mappedToCWE riskonto:CWE-328 ;
+    riskonto:severity "Medium"^^xsd:string ;
+    wg:affectsAsset wg:Asset_AuthService ;
+    wg:canonicalFindingId "CV-017"^^xsd:string ;
+    wg:classification "SecurityWeakness"^^xsd:string ;
+    wg:eligibleForReasoning "NO"^^xsd:string ;
+    wg:fromScanner "Semgrep"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_Weak_Cryptographic_Hash ;
+    wg:sourceCount "1"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_Weak_Cryptographic_Hash .
+
+wg:Finding_Weak_PRNG a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "Weak PRNG"^^xsd:string ;
+    riskonto:description "Weak PRNG (CWE-338) — DependencyWeakness. Evidence from: Snyk_SCA. Raw finding count: 1. No VP mapping in current ontology."^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_Weak_PRNG ;
+    riskonto:mappedToCWE riskonto:CWE-338 ;
+    riskonto:severity "High"^^xsd:string ;
+    wg:affectsAsset wg:Asset_AuthService ;
+    wg:canonicalFindingId "CV-018"^^xsd:string ;
+    wg:classification "DependencyWeakness"^^xsd:string ;
+    wg:eligibleForReasoning "NO"^^xsd:string ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_Weak_PRNG ;
+    wg:sourceCount "1"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_Weak_PRNG .
+
+wg:Finding_Weak_Password_Hashing a owl:NamedIndividual,
+        wg:CanonicalSecurityFinding ;
+    rdfs:label "Weak Password Hashing"^^xsd:string ;
+    riskonto:description "Weak Password Hashing (CWE-916) — SecurityWeakness. Evidence from: SonarQube_Issues. Raw finding count: 1. No VP mapping in current ontology."^^xsd:string ;
+    riskonto:hasRiskAssessment wg:RiskAssessment_Weak_Password_Hashing ;
+    riskonto:mappedToCWE riskonto:CWE-916 ;
+    riskonto:severity "Critical"^^xsd:string ;
+    wg:affectsAsset wg:Asset_AuthService ;
+    wg:canonicalFindingId "CV-041"^^xsd:string ;
+    wg:classification "SecurityWeakness"^^xsd:string ;
+    wg:eligibleForReasoning "NO"^^xsd:string ;
+    wg:fromScanner "SonarQube_Issues"^^xsd:string ;
+    wg:hasThreatScenario wg:ThreatScenario_Weak_Password_Hashing ;
+    wg:sourceCount "1"^^xsd:string ;
+    wg:supportedBy wg:EvidenceBundle_Weak_Password_Hashing .
+
+wg:RiskAssessment_Authentication_Bypass a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: Authentication Bypass"^^xsd:string ;
+    riskonto:criticalityValue "Critical"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=5, Likelihood=5, Score=25. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 5 ;
+    riskonto:likelihood 5 ;
+    riskonto:riskScoreValue 25 .
+
+wg:RiskAssessment_Clickjacking_Missing_Frame_Options a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: Clickjacking (Missing Frame Options)"^^xsd:string ;
+    riskonto:criticalityValue "Medium"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=3, Likelihood=3, Score=9. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 3 ;
+    riskonto:likelihood 3 ;
+    riskonto:riskScoreValue 9 .
+
+wg:RiskAssessment_Code_Injection a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: Code Injection"^^xsd:string ;
+    riskonto:criticalityValue "High"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=4, Likelihood=4, Score=16. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 4 ;
+    riskonto:likelihood 4 ;
+    riskonto:riskScoreValue 16 .
+
+wg:RiskAssessment_Cross_Site_Request_Forgery a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: Cross-Site Request Forgery"^^xsd:string ;
+    riskonto:criticalityValue "High"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=4, Likelihood=4, Score=16. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 4 ;
+    riskonto:likelihood 4 ;
+    riskonto:riskScoreValue 16 .
+
+wg:RiskAssessment_Denial_of_Service_Resource_Exhaustion a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: Denial of Service (Resource Exhaustion)"^^xsd:string ;
+    riskonto:criticalityValue "High"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=4, Likelihood=4, Score=16. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 4 ;
+    riskonto:likelihood 4 ;
+    riskonto:riskScoreValue 16 .
+
+wg:RiskAssessment_External_Variable_Initialization a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: External Variable Initialization"^^xsd:string ;
+    riskonto:criticalityValue "Medium"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=3, Likelihood=3, Score=9. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 3 ;
+    riskonto:likelihood 3 ;
+    riskonto:riskScoreValue 9 .
+
+wg:RiskAssessment_HTTP_Request_Smuggling a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: HTTP Request Smuggling"^^xsd:string ;
+    riskonto:criticalityValue "High"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=4, Likelihood=4, Score=16. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 4 ;
+    riskonto:likelihood 4 ;
+    riskonto:riskScoreValue 16 .
+
+wg:RiskAssessment_Improper_Authentication a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: Improper Authentication"^^xsd:string ;
+    riskonto:criticalityValue "High"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=4, Likelihood=4, Score=16. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 4 ;
+    riskonto:likelihood 4 ;
+    riskonto:riskScoreValue 16 .
+
+wg:RiskAssessment_Improper_Authorization a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: Improper Authorization"^^xsd:string ;
+    riskonto:criticalityValue "Low"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=2, Likelihood=2, Score=4. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 2 ;
+    riskonto:likelihood 2 ;
+    riskonto:riskScoreValue 4 .
+
+wg:RiskAssessment_Improper_Certificate_Validation a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: Improper Certificate Validation"^^xsd:string ;
+    riskonto:criticalityValue "Critical"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=5, Likelihood=5, Score=25. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 5 ;
+    riskonto:likelihood 5 ;
+    riskonto:riskScoreValue 25 .
+
+wg:RiskAssessment_Improper_Certificate_Validation_hostname a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: Improper Certificate Validation (hostname)"^^xsd:string ;
+    riskonto:criticalityValue "Low"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=2, Likelihood=2, Score=4. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 2 ;
+    riskonto:likelihood 2 ;
+    riskonto:riskScoreValue 4 .
+
+wg:RiskAssessment_Improper_Input_Validation a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: Improper Input Validation"^^xsd:string ;
+    riskonto:criticalityValue "High"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=4, Likelihood=4, Score=16. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 4 ;
+    riskonto:likelihood 4 ;
+    riskonto:riskScoreValue 16 .
+
+wg:RiskAssessment_Improper_Output_Encoding a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: Improper Output Encoding"^^xsd:string ;
+    riskonto:criticalityValue "Medium"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=3, Likelihood=3, Score=9. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 3 ;
+    riskonto:likelihood 3 ;
+    riskonto:riskScoreValue 9 .
+
+wg:RiskAssessment_Improper_Resource_Shutdown a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: Improper Resource Shutdown"^^xsd:string ;
+    riskonto:criticalityValue "Medium"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=3, Likelihood=3, Score=9. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 3 ;
+    riskonto:likelihood 3 ;
+    riskonto:riskScoreValue 9 .
+
+wg:RiskAssessment_Inadequate_Encryption_Strength a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: Inadequate Encryption Strength"^^xsd:string ;
+    riskonto:criticalityValue "Medium"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=3, Likelihood=3, Score=9. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 3 ;
+    riskonto:likelihood 3 ;
+    riskonto:riskScoreValue 9 .
+
+wg:RiskAssessment_Incomplete_Cleanup a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: Incomplete Cleanup"^^xsd:string ;
+    riskonto:criticalityValue "High"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=4, Likelihood=4, Score=16. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 4 ;
+    riskonto:likelihood 4 ;
+    riskonto:riskScoreValue 16 .
+
+wg:RiskAssessment_Incorrect_Authorization a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: Incorrect Authorization"^^xsd:string ;
+    riskonto:criticalityValue "High"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=4, Likelihood=4, Score=16. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 4 ;
+    riskonto:likelihood 4 ;
+    riskonto:riskScoreValue 16 .
+
+wg:RiskAssessment_Information_Exposure a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: Information Exposure"^^xsd:string ;
+    riskonto:criticalityValue "High"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=4, Likelihood=4, Score=16. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 4 ;
+    riskonto:likelihood 4 ;
+    riskonto:riskScoreValue 16 .
+
+wg:RiskAssessment_Information_Exposure_via_Debug_Actuator a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: Information Exposure via Debug / Actuator"^^xsd:string ;
+    riskonto:criticalityValue "Medium"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=3, Likelihood=3, Score=9. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 3 ;
+    riskonto:likelihood 3 ;
+    riskonto:riskScoreValue 9 .
+
+wg:RiskAssessment_Injection_Generic a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: Injection (Generic)"^^xsd:string ;
+    riskonto:criticalityValue "Low"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=2, Likelihood=2, Score=4. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 2 ;
+    riskonto:likelihood 2 ;
+    riskonto:riskScoreValue 4 .
+
+wg:RiskAssessment_Insecure_Configuration a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: Insecure Configuration"^^xsd:string ;
+    riskonto:criticalityValue "Low"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=2, Likelihood=2, Score=4. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 2 ;
+    riskonto:likelihood 2 ;
+    riskonto:riskScoreValue 4 .
+
+wg:RiskAssessment_Insecure_Cookie_SameSite_Attribute_Missing a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: Insecure Cookie (SameSite Attribute Missing)"^^xsd:string ;
+    riskonto:criticalityValue "Low"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=2, Likelihood=2, Score=4. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 2 ;
+    riskonto:likelihood 2 ;
+    riskonto:riskScoreValue 4 .
+
+wg:RiskAssessment_Insecure_Deserialization a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: Insecure Deserialization"^^xsd:string ;
+    riskonto:criticalityValue "High"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=4, Likelihood=4, Score=16. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 4 ;
+    riskonto:likelihood 4 ;
+    riskonto:riskScoreValue 16 .
+
+wg:RiskAssessment_Insecure_Temporary_File a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: Insecure Temporary File"^^xsd:string ;
+    riskonto:criticalityValue "High"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=4, Likelihood=4, Score=16. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 4 ;
+    riskonto:likelihood 4 ;
+    riskonto:riskScoreValue 16 .
+
+wg:RiskAssessment_Insufficient_Data_Authenticity_Verification a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: Insufficient Data Authenticity Verification"^^xsd:string ;
+    riskonto:criticalityValue "Medium"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=3, Likelihood=3, Score=9. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 3 ;
+    riskonto:likelihood 3 ;
+    riskonto:riskScoreValue 9 .
+
+wg:RiskAssessment_Memory_Allocation_with_Excessive_Size a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: Memory Allocation with Excessive Size"^^xsd:string ;
+    riskonto:criticalityValue "High"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=4, Likelihood=4, Score=16. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 4 ;
+    riskonto:likelihood 4 ;
+    riskonto:riskScoreValue 16 .
+
+wg:RiskAssessment_Missing_Security_Header_CSP_X_Content_Type a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: Missing Security Header (CSP / X-Content-Type)"^^xsd:string ;
+    riskonto:criticalityValue "Medium"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=3, Likelihood=3, Score=9. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 3 ;
+    riskonto:likelihood 3 ;
+    riskonto:riskScoreValue 9 .
+
+wg:RiskAssessment_Observable_Differences_in_Behavior a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: Observable Differences in Behavior"^^xsd:string ;
+    riskonto:criticalityValue "Medium"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=3, Likelihood=3, Score=9. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 3 ;
+    riskonto:likelihood 3 ;
+    riskonto:riskScoreValue 9 .
+
+wg:RiskAssessment_Open_Redirect a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: Open Redirect"^^xsd:string ;
+    riskonto:criticalityValue "Medium"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=3, Likelihood=3, Score=9. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 3 ;
+    riskonto:likelihood 3 ;
+    riskonto:riskScoreValue 9 .
+
+wg:RiskAssessment_Path_Traversal a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: Path Traversal"^^xsd:string ;
+    riskonto:criticalityValue "High"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=4, Likelihood=4, Score=16. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 4 ;
+    riskonto:likelihood 4 ;
+    riskonto:riskScoreValue 16 .
+
+wg:RiskAssessment_SQL_Injection a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: SQL Injection"^^xsd:string ;
+    riskonto:criticalityValue "High"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=4, Likelihood=4, Score=16. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 4 ;
+    riskonto:likelihood 4 ;
+    riskonto:riskScoreValue 16 .
+
+wg:RiskAssessment_Server_Side_Request_Forgery a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: Server-Side Request Forgery"^^xsd:string ;
+    riskonto:criticalityValue "Medium"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=3, Likelihood=3, Score=9. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 3 ;
+    riskonto:likelihood 3 ;
+    riskonto:riskScoreValue 9 .
+
+wg:RiskAssessment_Server_Side_Template_Injection a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: Server-Side Template Injection"^^xsd:string ;
+    riskonto:criticalityValue "Critical"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=5, Likelihood=5, Score=25. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 5 ;
+    riskonto:likelihood 5 ;
+    riskonto:riskScoreValue 25 .
+
+wg:RiskAssessment_Symbolic_Link_Following a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: Symbolic Link Following"^^xsd:string ;
+    riskonto:criticalityValue "Medium"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=3, Likelihood=3, Score=9. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 3 ;
+    riskonto:likelihood 3 ;
+    riskonto:riskScoreValue 9 .
+
+wg:RiskAssessment_Time_of_Check_to_Time_of_Use_Race_Condition a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: Time-of-Check to Time-of-Use Race Condition"^^xsd:string ;
+    riskonto:criticalityValue "Medium"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=3, Likelihood=3, Score=9. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 3 ;
+    riskonto:likelihood 3 ;
+    riskonto:riskScoreValue 9 .
+
+wg:RiskAssessment_Trust_Boundary_Violation a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: Trust Boundary Violation"^^xsd:string ;
+    riskonto:criticalityValue "Medium"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=3, Likelihood=3, Score=9. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 3 ;
+    riskonto:likelihood 3 ;
+    riskonto:riskScoreValue 9 .
+
+wg:RiskAssessment_Uncontrolled_Recursion a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: Uncontrolled Recursion"^^xsd:string ;
+    riskonto:criticalityValue "High"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=4, Likelihood=4, Score=16. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 4 ;
+    riskonto:likelihood 4 ;
+    riskonto:riskScoreValue 16 .
+
+wg:RiskAssessment_Uncontrolled_Resource_Consumption a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: Uncontrolled Resource Consumption"^^xsd:string ;
+    riskonto:criticalityValue "High"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=4, Likelihood=4, Score=16. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 4 ;
+    riskonto:likelihood 4 ;
+    riskonto:riskScoreValue 16 .
+
+wg:RiskAssessment_Unrestricted_File_Upload a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: Unrestricted File Upload"^^xsd:string ;
+    riskonto:criticalityValue "High"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=4, Likelihood=4, Score=16. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 4 ;
+    riskonto:likelihood 4 ;
+    riskonto:riskScoreValue 16 .
+
+wg:RiskAssessment_Use_of_Cache_Containing_Sensitive_Information a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: Use of Cache Containing Sensitive Information"^^xsd:string ;
+    riskonto:criticalityValue "Critical"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=5, Likelihood=5, Score=25. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 5 ;
+    riskonto:likelihood 5 ;
+    riskonto:riskScoreValue 25 .
+
+wg:RiskAssessment_Weak_Cryptographic_Hash a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: Weak Cryptographic Hash"^^xsd:string ;
+    riskonto:criticalityValue "Medium"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=3, Likelihood=3, Score=9. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 3 ;
+    riskonto:likelihood 3 ;
+    riskonto:riskScoreValue 9 .
+
+wg:RiskAssessment_Weak_PRNG a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: Weak PRNG"^^xsd:string ;
+    riskonto:criticalityValue "High"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=4, Likelihood=4, Score=16. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 4 ;
+    riskonto:likelihood 4 ;
+    riskonto:riskScoreValue 16 .
+
+wg:RiskAssessment_Weak_Password_Hashing a owl:NamedIndividual,
+        riskonto:RiskAssessment ;
+    rdfs:label "Risk Assessment: Weak Password Hashing"^^xsd:string ;
+    riskonto:criticalityValue "Critical"^^xsd:string ;
+    riskonto:description "PLACEHOLDER — not scored. Severity-derived defaults. Impact=5, Likelihood=5, Score=25. Override in SUT-2C scoring phase."^^xsd:string ;
+    riskonto:impact 5 ;
+    riskonto:likelihood 5 ;
+    riskonto:riskScoreValue 25 .
+
+wg:SF_Authentication_Bypass_Snyk_SCA a owl:NamedIndividual,
+        riskonto:DependencyFinding ;
+    rdfs:label "Snyk_SCA: Authentication Bypass"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_288 ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-061, SNYK-062, SNYK-063, SNYK-064"^^xsd:string .
+
+wg:SF_Clickjacking_Missing_Frame_Options_ZAP_DAST a owl:NamedIndividual,
+        riskonto:RuntimeFinding ;
+    rdfs:label "ZAP_DAST: Clickjacking (Missing Frame Options)"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_1021 ;
+    wg:fromScanner "ZAP_DAST"^^xsd:string ;
+    wg:rawFindingIds "ZAP-003"^^xsd:string .
+
+wg:SF_Code_Injection_Snyk_SCA a owl:NamedIndividual,
+        riskonto:DependencyFinding ;
+    rdfs:label "Snyk_SCA: Code Injection"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_94 ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-022, SNYK-027, SNYK-039"^^xsd:string .
+
+wg:SF_Cross_Site_Request_Forgery_SonarQube_Hotspots a owl:NamedIndividual,
+        riskonto:CodeFinding ;
+    rdfs:label "SonarQube_Hotspots: Cross-Site Request Forgery"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_352 ;
+    wg:fromScanner "SonarQube_Hotspots"^^xsd:string ;
+    wg:rawFindingIds ""^^xsd:string .
+
+wg:SF_Cross_Site_Request_Forgery_ZAP_DAST a owl:NamedIndividual,
+        riskonto:RuntimeFinding ;
+    rdfs:label "ZAP_DAST: Cross-Site Request Forgery"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_352 ;
+    wg:fromScanner "ZAP_DAST"^^xsd:string ;
+    wg:rawFindingIds "ZAP-001"^^xsd:string .
+
+wg:SF_Denial_of_Service_Resource_Exhaustion_Snyk_SCA a owl:NamedIndividual,
+        riskonto:DependencyFinding ;
+    rdfs:label "Snyk_SCA: Denial of Service (Resource Exhaustion)"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_400 ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-034, SNYK-036, SNYK-038, SNYK-052, SNYK-054"^^xsd:string .
+
+wg:SF_Denial_of_Service_Resource_Exhaustion_SonarQube_Hotspots a owl:NamedIndividual,
+        riskonto:CodeFinding ;
+    rdfs:label "SonarQube_Hotspots: Denial of Service (Resource Exhaustion)"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_400 ;
+    wg:fromScanner "SonarQube_Hotspots"^^xsd:string ;
+    wg:rawFindingIds ""^^xsd:string .
+
+wg:SF_External_Variable_Initialization_Snyk_SCA a owl:NamedIndividual,
+        riskonto:DependencyFinding ;
+    rdfs:label "Snyk_SCA: External Variable Initialization"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_454 ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-001, SNYK-002"^^xsd:string .
+
+wg:SF_HTTP_Request_Smuggling_Snyk_SCA a owl:NamedIndividual,
+        riskonto:DependencyFinding ;
+    rdfs:label "Snyk_SCA: HTTP Request Smuggling"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_444 ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-049, SNYK-059"^^xsd:string .
+
+wg:SF_Improper_Authentication_Snyk_SCA a owl:NamedIndividual,
+        riskonto:DependencyFinding ;
+    rdfs:label "Snyk_SCA: Improper Authentication"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_287 ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-046, SNYK-048"^^xsd:string .
+
+wg:SF_Improper_Authentication_SonarQube_Hotspots a owl:NamedIndividual,
+        riskonto:CodeFinding ;
+    rdfs:label "SonarQube_Hotspots: Improper Authentication"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_287 ;
+    wg:fromScanner "SonarQube_Hotspots"^^xsd:string ;
+    wg:rawFindingIds ""^^xsd:string .
+
+wg:SF_Improper_Authorization_Snyk_SCA a owl:NamedIndividual,
+        riskonto:DependencyFinding ;
+    rdfs:label "Snyk_SCA: Improper Authorization"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_285 ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-045"^^xsd:string .
+
+wg:SF_Improper_Certificate_Validation_Snyk_SCA a owl:NamedIndividual,
+        riskonto:DependencyFinding ;
+    rdfs:label "Snyk_SCA: Improper Certificate Validation"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_295 ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-043"^^xsd:string .
+
+wg:SF_Improper_Certificate_Validation_hostname_Snyk_SCA a owl:NamedIndividual,
+        riskonto:DependencyFinding ;
+    rdfs:label "Snyk_SCA: Improper Certificate Validation (hostname)"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_297 ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-065, SNYK-066"^^xsd:string .
+
+wg:SF_Improper_Input_Validation_Snyk_SCA a owl:NamedIndividual,
+        riskonto:DependencyFinding ;
+    rdfs:label "Snyk_SCA: Improper Input Validation"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_20 ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-037"^^xsd:string .
+
+wg:SF_Improper_Input_Validation_ZAP_DAST a owl:NamedIndividual,
+        riskonto:RuntimeFinding ;
+    rdfs:label "ZAP_DAST: Improper Input Validation"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_20 ;
+    wg:fromScanner "ZAP_DAST"^^xsd:string ;
+    wg:rawFindingIds "ZAP-010"^^xsd:string .
+
+wg:SF_Improper_Output_Encoding_Snyk_SCA a owl:NamedIndividual,
+        riskonto:DependencyFinding ;
+    rdfs:label "Snyk_SCA: Improper Output Encoding"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_116 ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-047"^^xsd:string .
+
+wg:SF_Improper_Resource_Shutdown_Snyk_SCA a owl:NamedIndividual,
+        riskonto:DependencyFinding ;
+    rdfs:label "Snyk_SCA: Improper Resource Shutdown"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_404 ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-042"^^xsd:string .
+
+wg:SF_Inadequate_Encryption_Strength_SonarQube_Hotspots a owl:NamedIndividual,
+        riskonto:CodeFinding ;
+    rdfs:label "SonarQube_Hotspots: Inadequate Encryption Strength"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_326 ;
+    wg:fromScanner "SonarQube_Hotspots"^^xsd:string ;
+    wg:rawFindingIds ""^^xsd:string .
+
+wg:SF_Incomplete_Cleanup_Snyk_SCA a owl:NamedIndividual,
+        riskonto:DependencyFinding ;
+    rdfs:label "Snyk_SCA: Incomplete Cleanup"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_459 ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-056"^^xsd:string .
+
+wg:SF_Incorrect_Authorization_Snyk_SCA a owl:NamedIndividual,
+        riskonto:DependencyFinding ;
+    rdfs:label "Snyk_SCA: Incorrect Authorization"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_863 ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-044"^^xsd:string .
+
+wg:SF_Information_Exposure_Snyk_SCA a owl:NamedIndividual,
+        riskonto:DependencyFinding ;
+    rdfs:label "Snyk_SCA: Information Exposure"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_200 ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-035"^^xsd:string .
+
+wg:SF_Information_Exposure_via_Debug_Actuator_ZAP_DAST a owl:NamedIndividual,
+        riskonto:RuntimeFinding ;
+    rdfs:label "ZAP_DAST: Information Exposure via Debug / Actuator"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_215 ;
+    wg:fromScanner "ZAP_DAST"^^xsd:string ;
+    wg:rawFindingIds "ZAP-004"^^xsd:string .
+
+wg:SF_Injection_Generic_Snyk_SCA a owl:NamedIndividual,
+        riskonto:DependencyFinding ;
+    rdfs:label "Snyk_SCA: Injection (Generic)"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_74 ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-055, SNYK-057"^^xsd:string .
+
+wg:SF_Insecure_Configuration_SonarQube_Hotspots a owl:NamedIndividual,
+        riskonto:CodeFinding ;
+    rdfs:label "SonarQube_Hotspots: Insecure Configuration"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_16 ;
+    wg:fromScanner "SonarQube_Hotspots"^^xsd:string ;
+    wg:rawFindingIds ""^^xsd:string .
+
+wg:SF_Insecure_Cookie_SameSite_Attribute_Missing_ZAP_DAST a owl:NamedIndividual,
+        riskonto:RuntimeFinding ;
+    rdfs:label "ZAP_DAST: Insecure Cookie (SameSite Attribute Missing)"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_1275 ;
+    wg:fromScanner "ZAP_DAST"^^xsd:string ;
+    wg:rawFindingIds "ZAP-005"^^xsd:string .
+
+wg:SF_Insecure_Deserialization_Snyk_SCA a owl:NamedIndividual,
+        riskonto:DependencyFinding ;
+    rdfs:label "Snyk_SCA: Insecure Deserialization"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_502 ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-005, SNYK-008, SNYK-009, SNYK-010, SNYK-011, SNYK-012, SNYK-013, SNYK-014, SNYK-015, SNYK-016, SNYK-017, SNYK-018, SNYK-019, SNYK-031, SNYK-032, SNYK-033, SNYK-040"^^xsd:string .
+
+wg:SF_Insecure_Temporary_File_Snyk_SCA a owl:NamedIndividual,
+        riskonto:DependencyFinding ;
+    rdfs:label "Snyk_SCA: Insecure Temporary File"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_377 ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-068"^^xsd:string .
+
+wg:SF_Insufficient_Data_Authenticity_Verification_Snyk_SCA a owl:NamedIndividual,
+        riskonto:DependencyFinding ;
+    rdfs:label "Snyk_SCA: Insufficient Data Authenticity Verification"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_345 ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-073"^^xsd:string .
+
+wg:SF_Memory_Allocation_with_Excessive_Size_Snyk_SCA a owl:NamedIndividual,
+        riskonto:DependencyFinding ;
+    rdfs:label "Snyk_SCA: Memory Allocation with Excessive Size"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_789 ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-053"^^xsd:string .
+
+wg:SF_Missing_Security_Header_CSP_X_Content_Type_ZAP_DAST a owl:NamedIndividual,
+        riskonto:RuntimeFinding ;
+    rdfs:label "ZAP_DAST: Missing Security Header (CSP / X-Content-Type)"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_693 ;
+    wg:fromScanner "ZAP_DAST"^^xsd:string ;
+    wg:rawFindingIds "ZAP-002, ZAP-006"^^xsd:string .
+
+wg:SF_Observable_Differences_in_Behavior_Snyk_SCA a owl:NamedIndividual,
+        riskonto:DependencyFinding ;
+    rdfs:label "Snyk_SCA: Observable Differences in Behavior"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_203 ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-072"^^xsd:string .
+
+wg:SF_Open_Redirect_Semgrep a owl:NamedIndividual,
+        riskonto:CodeFinding ;
+    rdfs:label "Semgrep: Open Redirect"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_601 ;
+    wg:fromScanner "Semgrep"^^xsd:string ;
+    wg:rawFindingIds ""^^xsd:string .
+
+wg:SF_Open_Redirect_Snyk_SCA a owl:NamedIndividual,
+        riskonto:DependencyFinding ;
+    rdfs:label "Snyk_SCA: Open Redirect"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_601 ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-050"^^xsd:string .
+
+wg:SF_Path_Traversal_Semgrep a owl:NamedIndividual,
+        riskonto:CodeFinding ;
+    rdfs:label "Semgrep: Path Traversal"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_22 ;
+    wg:fromScanner "Semgrep"^^xsd:string ;
+    wg:rawFindingIds ""^^xsd:string .
+
+wg:SF_Path_Traversal_Snyk_SCA a owl:NamedIndividual,
+        riskonto:DependencyFinding ;
+    rdfs:label "Snyk_SCA: Path Traversal"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_22 ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-006, SNYK-058"^^xsd:string .
+
+wg:SF_SQL_Injection_Semgrep a owl:NamedIndividual,
+        riskonto:CodeFinding ;
+    rdfs:label "Semgrep: SQL Injection"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_89 ;
+    wg:fromScanner "Semgrep"^^xsd:string ;
+    wg:rawFindingIds ""^^xsd:string .
+
+wg:SF_SQL_Injection_SonarQube_Hotspots a owl:NamedIndividual,
+        riskonto:CodeFinding ;
+    rdfs:label "SonarQube_Hotspots: SQL Injection"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_89 ;
+    wg:fromScanner "SonarQube_Hotspots"^^xsd:string ;
+    wg:rawFindingIds ""^^xsd:string .
+
+wg:SF_Server_Side_Request_Forgery_Semgrep a owl:NamedIndividual,
+        riskonto:CodeFinding ;
+    rdfs:label "Semgrep: Server-Side Request Forgery"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_918 ;
+    wg:fromScanner "Semgrep"^^xsd:string ;
+    wg:rawFindingIds ""^^xsd:string .
+
+wg:SF_Server_Side_Request_Forgery_Snyk_SCA a owl:NamedIndividual,
+        riskonto:DependencyFinding ;
+    rdfs:label "Snyk_SCA: Server-Side Request Forgery"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_918 ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-007"^^xsd:string .
+
+wg:SF_Server_Side_Template_Injection_Snyk_SCA a owl:NamedIndividual,
+        riskonto:DependencyFinding ;
+    rdfs:label "Snyk_SCA: Server-Side Template Injection"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_1336 ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-074, SNYK-075, SNYK-076, SNYK-077"^^xsd:string .
+
+wg:SF_Symbolic_Link_Following_Snyk_SCA a owl:NamedIndividual,
+        riskonto:DependencyFinding ;
+    rdfs:label "Snyk_SCA: Symbolic Link Following"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_59 ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-069"^^xsd:string .
+
+wg:SF_Time_of_Check_to_Time_of_Use_Race_Condition_Snyk_SCA a owl:NamedIndividual,
+        riskonto:DependencyFinding ;
+    rdfs:label "Snyk_SCA: Time-of-Check to Time-of-Use Race Condition"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_367 ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-071"^^xsd:string .
+
+wg:SF_Trust_Boundary_Violation_Semgrep a owl:NamedIndividual,
+        riskonto:CodeFinding ;
+    rdfs:label "Semgrep: Trust Boundary Violation"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_501 ;
+    wg:fromScanner "Semgrep"^^xsd:string ;
+    wg:rawFindingIds ""^^xsd:string .
+
+wg:SF_Uncontrolled_Recursion_Snyk_SCA a owl:NamedIndividual,
+        riskonto:DependencyFinding ;
+    rdfs:label "Snyk_SCA: Uncontrolled Recursion"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_674 ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-041"^^xsd:string .
+
+wg:SF_Uncontrolled_Resource_Consumption_Snyk_SCA a owl:NamedIndividual,
+        riskonto:DependencyFinding ;
+    rdfs:label "Snyk_SCA: Uncontrolled Resource Consumption"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_770 ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-003, SNYK-004, SNYK-051, SNYK-060"^^xsd:string .
+
+wg:SF_Unrestricted_File_Upload_Snyk_SCA a owl:NamedIndividual,
+        riskonto:DependencyFinding ;
+    rdfs:label "Snyk_SCA: Unrestricted File Upload"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_434 ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-020, SNYK-021, SNYK-023, SNYK-024, SNYK-025, SNYK-026, SNYK-028, SNYK-029, SNYK-030"^^xsd:string .
+
+wg:SF_Use_of_Cache_Containing_Sensitive_Information_Snyk_SCA a owl:NamedIndividual,
+        riskonto:DependencyFinding ;
+    rdfs:label "Snyk_SCA: Use of Cache Containing Sensitive Information"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_524 ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-070"^^xsd:string .
+
+wg:SF_Weak_Cryptographic_Hash_Semgrep a owl:NamedIndividual,
+        riskonto:CodeFinding ;
+    rdfs:label "Semgrep: Weak Cryptographic Hash"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_328 ;
+    wg:fromScanner "Semgrep"^^xsd:string ;
+    wg:rawFindingIds ""^^xsd:string .
+
+wg:SF_Weak_PRNG_Snyk_SCA a owl:NamedIndividual,
+        riskonto:DependencyFinding ;
+    rdfs:label "Snyk_SCA: Weak PRNG"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_338 ;
+    wg:fromScanner "Snyk_SCA"^^xsd:string ;
+    wg:rawFindingIds "SNYK-067"^^xsd:string .
+
+wg:SF_Weak_Password_Hashing_SonarQube_Issues a owl:NamedIndividual,
+        riskonto:CodeFinding ;
+    rdfs:label "SonarQube_Issues: Weak Password Hashing"^^xsd:string ;
+    riskonto:hasCWE riskonto:CWE_916 ;
+    wg:fromScanner "SonarQube_Issues"^^xsd:string ;
+    wg:rawFindingIds ""^^xsd:string .
+
+wg:ThreatScenario_Authentication_Bypass a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: Authentication Bypass"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_Authentication_Bypass ;
+    riskonto:description "DependencyWeakness threat in WebGoat: Authentication Bypass (CWE-288). Affects: Asset_AuthService, Asset_LoginModule. Dominant severity: Critical."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_AuthService,
+        wg:Asset_LoginModule .
+
+wg:ThreatScenario_Clickjacking_Missing_Frame_Options a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: Clickjacking (Missing Frame Options)"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_Clickjacking_Missing_Frame_Options ;
+    riskonto:description "ConfigurationWeakness threat in WebGoat: Clickjacking (Missing Frame Options) (CWE-1021). Affects: Asset_WebGoatApp. Dominant severity: Medium."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_WebGoatApp .
+
+wg:ThreatScenario_Code_Injection a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: Code Injection"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_Code_Injection ;
+    riskonto:description "DependencyWeakness threat in WebGoat: Code Injection (CWE-94). Affects: Asset_WebGoatApp, Asset_LessonEngine. Dominant severity: High."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_LessonEngine,
+        wg:Asset_WebGoatApp .
+
+wg:ThreatScenario_Cross_Site_Request_Forgery a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: Cross-Site Request Forgery"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_Cross_Site_Request_Forgery ;
+    riskonto:description "ExploitableVulnerability threat in WebGoat: Cross-Site Request Forgery (CWE-352). Affects: Asset_WebGoatApp, Asset_SessionMgr. Dominant severity: High."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_SessionMgr,
+        wg:Asset_WebGoatApp .
+
+wg:ThreatScenario_Denial_of_Service_Resource_Exhaustion a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: Denial of Service (Resource Exhaustion)"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_Denial_of_Service_Resource_Exhaustion ;
+    riskonto:description "SecurityWeakness threat in WebGoat: Denial of Service (Resource Exhaustion) (CWE-400). Affects: Asset_WebGoatApp. Dominant severity: High."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_WebGoatApp .
+
+wg:ThreatScenario_External_Variable_Initialization a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: External Variable Initialization"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_External_Variable_Initialization ;
+    riskonto:description "DependencyWeakness threat in WebGoat: External Variable Initialization (CWE-454). Affects: Asset_WebGoatApp. Dominant severity: Medium."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_WebGoatApp .
+
+wg:ThreatScenario_HTTP_Request_Smuggling a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: HTTP Request Smuggling"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_HTTP_Request_Smuggling ;
+    riskonto:description "DependencyWeakness threat in WebGoat: HTTP Request Smuggling (CWE-444). Affects: Asset_WebGoatApp. Dominant severity: High."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_WebGoatApp .
+
+wg:ThreatScenario_Improper_Authentication a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: Improper Authentication"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_Improper_Authentication ;
+    riskonto:description "ExploitableVulnerability threat in WebGoat: Improper Authentication (CWE-287). Affects: Asset_AuthService, Asset_LoginModule. Dominant severity: High."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_AuthService,
+        wg:Asset_LoginModule .
+
+wg:ThreatScenario_Improper_Authorization a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: Improper Authorization"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_Improper_Authorization ;
+    riskonto:description "DependencyWeakness threat in WebGoat: Improper Authorization (CWE-285). Affects: Asset_AuthService, Asset_WebGoatApp. Dominant severity: Low."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_AuthService,
+        wg:Asset_WebGoatApp .
+
+wg:ThreatScenario_Improper_Certificate_Validation a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: Improper Certificate Validation"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_Improper_Certificate_Validation ;
+    riskonto:description "DependencyWeakness threat in WebGoat: Improper Certificate Validation (CWE-295). Affects: Asset_WebGoatApp. Dominant severity: Critical."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_WebGoatApp .
+
+wg:ThreatScenario_Improper_Certificate_Validation_hostname a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: Improper Certificate Validation (hostname)"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_Improper_Certificate_Validation_hostname ;
+    riskonto:description "DependencyWeakness threat in WebGoat: Improper Certificate Validation (hostname) (CWE-297). Affects: Asset_WebGoatApp. Dominant severity: Low."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_WebGoatApp .
+
+wg:ThreatScenario_Improper_Input_Validation a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: Improper Input Validation"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_Improper_Input_Validation ;
+    riskonto:description "SecurityWeakness threat in WebGoat: Improper Input Validation (CWE-20). Affects: Asset_WebGoatApp, Asset_REST_API. Dominant severity: High."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_REST_API,
+        wg:Asset_WebGoatApp .
+
+wg:ThreatScenario_Improper_Output_Encoding a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: Improper Output Encoding"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_Improper_Output_Encoding ;
+    riskonto:description "DependencyWeakness threat in WebGoat: Improper Output Encoding (CWE-116). Affects: Asset_WebGoatApp. Dominant severity: Medium."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_WebGoatApp .
+
+wg:ThreatScenario_Improper_Resource_Shutdown a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: Improper Resource Shutdown"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_Improper_Resource_Shutdown ;
+    riskonto:description "DependencyWeakness threat in WebGoat: Improper Resource Shutdown (CWE-404). Affects: Asset_WebGoatApp. Dominant severity: Medium."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_WebGoatApp .
+
+wg:ThreatScenario_Inadequate_Encryption_Strength a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: Inadequate Encryption Strength"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_Inadequate_Encryption_Strength ;
+    riskonto:description "SecurityWeakness threat in WebGoat: Inadequate Encryption Strength (CWE-326). Affects: Asset_AuthService, Asset_WebGoatApp. Dominant severity: Medium."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_AuthService,
+        wg:Asset_WebGoatApp .
+
+wg:ThreatScenario_Incomplete_Cleanup a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: Incomplete Cleanup"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_Incomplete_Cleanup ;
+    riskonto:description "DependencyWeakness threat in WebGoat: Incomplete Cleanup (CWE-459). Affects: Asset_WebGoatApp. Dominant severity: High."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_WebGoatApp .
+
+wg:ThreatScenario_Incorrect_Authorization a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: Incorrect Authorization"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_Incorrect_Authorization ;
+    riskonto:description "DependencyWeakness threat in WebGoat: Incorrect Authorization (CWE-863). Affects: Asset_AuthService, Asset_AdminInterface. Dominant severity: High."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_AdminInterface,
+        wg:Asset_AuthService .
+
+wg:ThreatScenario_Information_Exposure a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: Information Exposure"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_Information_Exposure ;
+    riskonto:description "DependencyWeakness threat in WebGoat: Information Exposure (CWE-200). Affects: Asset_WebGoatApp. Dominant severity: High."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_WebGoatApp .
+
+wg:ThreatScenario_Information_Exposure_via_Debug_Actuator a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: Information Exposure via Debug / Actuator"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_Information_Exposure_via_Debug_Actuator ;
+    riskonto:description "ConfigurationWeakness threat in WebGoat: Information Exposure via Debug / Actuator (CWE-215). Affects: Asset_WebGoatApp, Asset_AdminInterface. Dominant severity: Medium."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_AdminInterface,
+        wg:Asset_WebGoatApp .
+
+wg:ThreatScenario_Injection_Generic a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: Injection (Generic)"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_Injection_Generic ;
+    riskonto:description "DependencyWeakness threat in WebGoat: Injection (Generic) (CWE-74). Affects: Asset_WebGoatApp, Asset_REST_API. Dominant severity: Low."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_REST_API,
+        wg:Asset_WebGoatApp .
+
+wg:ThreatScenario_Insecure_Configuration a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: Insecure Configuration"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_Insecure_Configuration ;
+    riskonto:description "ConfigurationWeakness threat in WebGoat: Insecure Configuration (CWE-16). Affects: Asset_WebGoatApp. Dominant severity: Low."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_WebGoatApp .
+
+wg:ThreatScenario_Insecure_Cookie_SameSite_Attribute_Missing a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: Insecure Cookie (SameSite Attribute Missing)"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_Insecure_Cookie_SameSite_Attribute_Missing ;
+    riskonto:description "ConfigurationWeakness threat in WebGoat: Insecure Cookie (SameSite Attribute Missing) (CWE-1275). Affects: Asset_WebGoatApp, Asset_SessionMgr. Dominant severity: Low."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_SessionMgr,
+        wg:Asset_WebGoatApp .
+
+wg:ThreatScenario_Insecure_Deserialization a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: Insecure Deserialization"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_Insecure_Deserialization ;
+    riskonto:description "DependencyWeakness threat in WebGoat: Insecure Deserialization (CWE-502). Affects: Asset_WebGoatApp, Asset_LessonEngine. Dominant severity: High."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_LessonEngine,
+        wg:Asset_WebGoatApp .
+
+wg:ThreatScenario_Insecure_Temporary_File a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: Insecure Temporary File"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_Insecure_Temporary_File ;
+    riskonto:description "DependencyWeakness threat in WebGoat: Insecure Temporary File (CWE-377). Affects: Asset_WebGoatApp. Dominant severity: High."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_WebGoatApp .
+
+wg:ThreatScenario_Insufficient_Data_Authenticity_Verification a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: Insufficient Data Authenticity Verification"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_Insufficient_Data_Authenticity_Verification ;
+    riskonto:description "DependencyWeakness threat in WebGoat: Insufficient Data Authenticity Verification (CWE-345). Affects: Asset_WebGoatApp. Dominant severity: Medium."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_WebGoatApp .
+
+wg:ThreatScenario_Memory_Allocation_with_Excessive_Size a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: Memory Allocation with Excessive Size"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_Memory_Allocation_with_Excessive_Size ;
+    riskonto:description "DependencyWeakness threat in WebGoat: Memory Allocation with Excessive Size (CWE-789). Affects: Asset_WebGoatApp. Dominant severity: High."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_WebGoatApp .
+
+wg:ThreatScenario_Missing_Security_Header_CSP_X_Content_Type a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: Missing Security Header (CSP / X-Content-Type)"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_Missing_Security_Header_CSP_X_Content_Type ;
+    riskonto:description "ConfigurationWeakness threat in WebGoat: Missing Security Header (CSP / X-Content-Type) (CWE-693). Affects: Asset_WebGoatApp. Dominant severity: Medium."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_WebGoatApp .
+
+wg:ThreatScenario_Observable_Differences_in_Behavior a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: Observable Differences in Behavior"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_Observable_Differences_in_Behavior ;
+    riskonto:description "DependencyWeakness threat in WebGoat: Observable Differences in Behavior (CWE-203). Affects: Asset_WebGoatApp. Dominant severity: Medium."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_WebGoatApp .
+
+wg:ThreatScenario_Open_Redirect a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: Open Redirect"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_Open_Redirect ;
+    riskonto:description "SecurityWeakness threat in WebGoat: Open Redirect (CWE-601). Affects: Asset_WebGoatApp. Dominant severity: Medium."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_WebGoatApp .
+
+wg:ThreatScenario_Path_Traversal a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: Path Traversal"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_Path_Traversal ;
+    riskonto:description "ExploitableVulnerability threat in WebGoat: Path Traversal (CWE-22). Affects: Asset_FileUpload, Asset_REST_API. Dominant severity: High."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_FileUpload,
+        wg:Asset_REST_API .
+
+wg:ThreatScenario_SQL_Injection a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: SQL Injection"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_SQL_Injection ;
+    riskonto:description "ExploitableVulnerability threat in WebGoat: SQL Injection (CWE-89). Affects: Asset_WebGoatDB, Asset_REST_API, Asset_LessonEngine. Dominant severity: High."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_LessonEngine,
+        wg:Asset_REST_API,
+        wg:Asset_WebGoatDB .
+
+wg:ThreatScenario_Server_Side_Request_Forgery a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: Server-Side Request Forgery"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_Server_Side_Request_Forgery ;
+    riskonto:description "SecurityWeakness threat in WebGoat: Server-Side Request Forgery (CWE-918). Affects: Asset_WebGoatApp. Dominant severity: Medium."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_WebGoatApp .
+
+wg:ThreatScenario_Server_Side_Template_Injection a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: Server-Side Template Injection"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_Server_Side_Template_Injection ;
+    riskonto:description "DependencyWeakness threat in WebGoat: Server-Side Template Injection (CWE-1336). Affects: Asset_WebGoatApp, Asset_LessonEngine. Dominant severity: Critical."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_LessonEngine,
+        wg:Asset_WebGoatApp .
+
+wg:ThreatScenario_Symbolic_Link_Following a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: Symbolic Link Following"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_Symbolic_Link_Following ;
+    riskonto:description "DependencyWeakness threat in WebGoat: Symbolic Link Following (CWE-59). Affects: Asset_FileUpload. Dominant severity: Medium."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_FileUpload .
+
+wg:ThreatScenario_Time_of_Check_to_Time_of_Use_Race_Condition a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: Time-of-Check to Time-of-Use Race Condition"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_Time_of_Check_to_Time_of_Use_Race_Condition ;
+    riskonto:description "DependencyWeakness threat in WebGoat: Time-of-Check to Time-of-Use Race Condition (CWE-367). Affects: Asset_WebGoatApp. Dominant severity: Medium."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_WebGoatApp .
+
+wg:ThreatScenario_Trust_Boundary_Violation a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: Trust Boundary Violation"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_Trust_Boundary_Violation ;
+    riskonto:description "SecurityWeakness threat in WebGoat: Trust Boundary Violation (CWE-501). Affects: Asset_WebGoatApp, Asset_SessionMgr. Dominant severity: Medium."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_SessionMgr,
+        wg:Asset_WebGoatApp .
+
+wg:ThreatScenario_Uncontrolled_Recursion a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: Uncontrolled Recursion"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_Uncontrolled_Recursion ;
+    riskonto:description "DependencyWeakness threat in WebGoat: Uncontrolled Recursion (CWE-674). Affects: Asset_WebGoatApp. Dominant severity: High."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_WebGoatApp .
+
+wg:ThreatScenario_Uncontrolled_Resource_Consumption a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: Uncontrolled Resource Consumption"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_Uncontrolled_Resource_Consumption ;
+    riskonto:description "DependencyWeakness threat in WebGoat: Uncontrolled Resource Consumption (CWE-770). Affects: Asset_WebGoatApp. Dominant severity: High."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_WebGoatApp .
+
+wg:ThreatScenario_Unrestricted_File_Upload a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: Unrestricted File Upload"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_Unrestricted_File_Upload ;
+    riskonto:description "DependencyWeakness threat in WebGoat: Unrestricted File Upload (CWE-434). Affects: Asset_FileUpload, Asset_REST_API. Dominant severity: High."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_FileUpload,
+        wg:Asset_REST_API .
+
+wg:ThreatScenario_Use_of_Cache_Containing_Sensitive_Information a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: Use of Cache Containing Sensitive Information"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_Use_of_Cache_Containing_Sensitive_Information ;
+    riskonto:description "DependencyWeakness threat in WebGoat: Use of Cache Containing Sensitive Information (CWE-524). Affects: Asset_WebGoatApp, Asset_SessionMgr. Dominant severity: Critical."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_SessionMgr,
+        wg:Asset_WebGoatApp .
+
+wg:ThreatScenario_Weak_Cryptographic_Hash a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: Weak Cryptographic Hash"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_Weak_Cryptographic_Hash ;
+    riskonto:description "SecurityWeakness threat in WebGoat: Weak Cryptographic Hash (CWE-328). Affects: Asset_AuthService. Dominant severity: Medium."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_AuthService .
+
+wg:ThreatScenario_Weak_PRNG a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: Weak PRNG"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_Weak_PRNG ;
+    riskonto:description "DependencyWeakness threat in WebGoat: Weak PRNG (CWE-338). Affects: Asset_AuthService. Dominant severity: High."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_AuthService .
+
+wg:ThreatScenario_Weak_Password_Hashing a owl:NamedIndividual,
+        riskonto:ThreatScenario ;
+    rdfs:label "Threat Scenario: Weak Password Hashing"^^xsd:string ;
+    riskonto:derivedFromFinding wg:Finding_Weak_Password_Hashing ;
+    riskonto:description "SecurityWeakness threat in WebGoat: Weak Password Hashing (CWE-916). Affects: Asset_AuthService. Dominant severity: Critical."^^xsd:string ;
+    riskonto:targetsAsset wg:Asset_AuthService .
+
+wg:Asset_WebGoatDB a owl:NamedIndividual,
+        riskonto:RelationalDatabase ;
+    rdfs:label "WebGoat Embedded Database"^^xsd:string ;
+    riskonto:description "H2 in-memory relational database storing lesson data, user accounts, and exercise state."^^xsd:string ;
+    riskonto:hasVulnerability riskonto:VulnProfile_SQL_Injection .
+
+wg:Asset_AdminInterface a owl:NamedIndividual,
+        riskonto:WebApplication ;
+    rdfs:label "WebGoat Admin Interface"^^xsd:string ;
+    riskonto:description "Administrative endpoints and management interface (Spring Actuator + /WebGoat/server-info)."^^xsd:string .
+
+wg:Asset_LoginModule a owl:NamedIndividual,
+        riskonto:WebApplication ;
+    rdfs:label "WebGoat Login Module"^^xsd:string ;
+    riskonto:description "HTML/Spring Security login page and credential processing at /WebGoat/login."^^xsd:string .
+
+wg:Asset_FileUpload a owl:NamedIndividual,
+        riskonto:WebApplication ;
+    rdfs:label "WebGoat File Upload Module"^^xsd:string ;
+    riskonto:description "File upload endpoints at /WebGoat/fileupload/. Processes multipart form data."^^xsd:string ;
+    riskonto:hasVulnerability riskonto:VulnProfile_Malicious_File_Upload,
+        riskonto:VulnProfile_Path_Traversal .
+
+wg:Asset_LessonEngine a owl:NamedIndividual,
+        riskonto:WebApplication ;
+    rdfs:label "WebGoat Lesson Engine"^^xsd:string ;
+    riskonto:description "Java-based lesson execution engine; processes user submissions and exercise logic."^^xsd:string .
+
+wg:Asset_SessionMgr a owl:NamedIndividual,
+        riskonto:WebApplication ;
+    rdfs:label "WebGoat Session Manager"^^xsd:string ;
+    riskonto:description "Spring Session management; handles session tokens, cookies, and CSRF protection."^^xsd:string .
+
+wg:Asset_REST_API a owl:NamedIndividual,
+        riskonto:RESTAPI ;
+    rdfs:label "WebGoat REST API"^^xsd:string ;
+    riskonto:description "RESTful API endpoints exposing lesson exercises at /WebGoat/. Spring MVC controllers."^^xsd:string .
+
+wg:Asset_AuthService a owl:NamedIndividual,
+        riskonto:AuthenticationServer ;
+    rdfs:label "WebGoat Authentication Service"^^xsd:string ;
+    riskonto:description "Spring Security authentication/authorization layer; handles credentials, MFA, JWT."^^xsd:string ;
+    riskonto:hasVulnerability riskonto:VulnProfile_Account_Abuse,
+        riskonto:VulnProfile_Weak_MFA .
+
+wg:EvidenceBundle a owl:Class ;
+    rdfs:label "Evidence Bundle — aggregated scanner evidence for a canonical finding"^^xsd:string ;
+    rdfs:subClassOf riskonto:Evidence .
+
+wg:CanonicalSecurityFinding a owl:Class ;
+    rdfs:label "Canonical Security Finding — normalized from scanner evidence"^^xsd:string ;
+    rdfs:subClassOf riskonto:Evidence .
+
+wg:Asset_WebGoatApp a owl:NamedIndividual,
+        riskonto:WebApplication ;
+    rdfs:label "WebGoat Web Application"^^xsd:string ;
+    riskonto:description "Spring Boot web application serving WebGoat lessons at port 8080. Primary attack surface."^^xsd:string ;
+    riskonto:hasVulnerability riskonto:VulnProfile_Adversarial_AI_Attack,
+        riskonto:VulnProfile_Agent_Injection,
+        riskonto:VulnProfile_Cross_Site_Request_Forgery,
+        riskonto:VulnProfile_Pickle_Injection,
+        riskonto:VulnProfile_Public_Storage_Exposure,
+        riskonto:VulnProfile_Rate_Limit_Bypass,
+        riskonto:VulnProfile_Weak_TLS_Configuration,
+        riskonto:VulnProfile_XML_Injection .
+
