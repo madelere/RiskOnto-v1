@@ -1,0 +1,274 @@
+finding_id,scanner,cwe,canonical_id,severity,title
+SEM-001,Semgrep,CWE-89,CANVULN-040,Medium,tainted sql string
+SEM-002,Semgrep,CWE-89,CANVULN-040,Medium,formatted sql string
+SEM-003,Semgrep,CWE-501,CANVULN-029,Medium,tainted session from http request
+SEM-004,Semgrep,CWE-328,CANVULN-017,Medium,use of md5
+SEM-005,Semgrep,CWE-918,CANVULN-042,Medium,tainted url host
+SEM-006,Semgrep,CWE-601,CANVULN-033,Medium,spring unvalidated redirect
+SEM-007,Semgrep,CWE-22,CANVULN-010,Medium,httpservlet path traversal
+SEM-008,Semgrep,CWE-89,CANVULN-040,Medium,tainted sql string
+SEM-009,Semgrep,CWE-89,CANVULN-040,Medium,formatted sql string
+SEM-010,Semgrep,CWE-89,CANVULN-040,Medium,formatted sql string
+SEM-011,Semgrep,CWE-89,CANVULN-040,Medium,formatted sql string
+SEM-012,Semgrep,CWE-89,CANVULN-040,Medium,formatted sql string
+SEM-013,Semgrep,CWE-89,CANVULN-040,Medium,formatted sql string
+SEM-014,Semgrep,CWE-89,CANVULN-040,Medium,formatted sql string
+SEM-015,Semgrep,CWE-89,CANVULN-040,Medium,formatted sql string
+SEM-016,Semgrep,CWE-89,CANVULN-040,Medium,tainted sql string
+SEM-017,Semgrep,CWE-23,CANVULN-010,Medium,tainted file path
+SQI-001,SonarQube_Issues,NONE,CANVULN-045,Critical,"Define a constant instead of duplicating this literal ""status"" 3 times."
+SQI-002,SonarQube_Issues,NONE,CANVULN-045,Medium,Replace this String concatenation with Text block.
+SQI-003,SonarQube_Issues,NONE,CANVULN-045,Low,"Use assertThat(actual).containsEntry(key, value) instead."
+SQI-004,SonarQube_Issues,NONE,CANVULN-045,Low,"Use assertThat(actual).containsEntry(key, value) instead."
+SQI-005,SonarQube_Issues,NONE,CANVULN-045,Critical,"Define a constant instead of duplicating this literal ""openredirect.mitigation.f"
+SQI-006,SonarQube_Issues,NONE,CANVULN-045,Critical,"Define a constant instead of duplicating this literal ""Solution 0"" 3 times."
+SQI-007,SonarQube_Issues,NONE,CANVULN-045,Critical,"Define a constant instead of duplicating this literal ""openredirect.failure1"" 5 "
+SQI-008,SonarQube_Issues,NONE,CANVULN-045,Critical,"Define a constant instead of duplicating this literal ""openredirect.failure2"" 6 "
+SQI-009,SonarQube_Issues,NONE,CANVULN-045,Critical,"Define a constant instead of duplicating this literal ""openredirect.failure3"" 3 "
+SQI-010,SonarQube_Issues,NONE,CANVULN-045,Critical,"Define a constant instead of duplicating this literal ""openredirect.failure4"" 4 "
+SQI-011,SonarQube_Issues,NONE,CANVULN-045,Medium,Return an empty array instead of null.
+SQI-012,SonarQube_Issues,NONE,CANVULN-045,Low,"Remove this use of ""isEmpty""; it is deprecated."
+SQI-013,SonarQube_Issues,NONE,CANVULN-045,Low,"Remove this use of ""isEmpty""; it is deprecated."
+SQI-014,SonarQube_Issues,NONE,CANVULN-045,Low,"Remove this use of ""isEmpty""; it is deprecated."
+SQI-015,SonarQube_Issues,NONE,CANVULN-045,Medium,Define and throw a dedicated exception instead of using a generic one.
+SQI-016,SonarQube_Issues,NONE,CANVULN-045,Informational,Complete the task associated to this TODO comment.
+SQI-017,SonarQube_Issues,NONE,CANVULN-045,Critical,Rename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z
+SQI-018,SonarQube_Issues,NONE,CANVULN-045,Medium,"Remove this unused ""userSessionData"" private field."
+SQI-019,SonarQube_Issues,NONE,CANVULN-045,High,Add at least one assertion to this test case.
+SQI-020,SonarQube_Issues,NONE,CANVULN-045,Informational,Remove this 'public' modifier.
+SQI-021,SonarQube_Issues,NONE,CANVULN-045,Informational,Remove this 'public' modifier.
+SQI-022,SonarQube_Issues,NONE,CANVULN-045,Informational,Remove this 'public' modifier.
+SQI-023,SonarQube_Issues,NONE,CANVULN-045,Informational,Remove this 'public' modifier.
+SQI-024,SonarQube_Issues,NONE,CANVULN-045,Informational,Remove this 'public' modifier.
+SQI-025,SonarQube_Issues,NONE,CANVULN-045,Informational,Remove this 'public' modifier.
+SQI-026,SonarQube_Issues,NONE,CANVULN-045,Informational,Remove this 'public' modifier.
+SQI-027,SonarQube_Issues,NONE,CANVULN-045,Informational,Remove this 'public' modifier.
+SQI-028,SonarQube_Issues,NONE,CANVULN-045,Informational,Remove this 'public' modifier.
+SQI-029,SonarQube_Issues,NONE,CANVULN-045,Informational,Remove this 'public' modifier.
+SQI-030,SonarQube_Issues,NONE,CANVULN-045,Informational,Remove this 'public' modifier.
+SQI-031,SonarQube_Issues,NONE,CANVULN-045,Informational,Remove this 'public' modifier.
+SQI-032,SonarQube_Issues,NONE,CANVULN-045,Informational,Remove this 'public' modifier.
+SQI-033,SonarQube_Issues,NONE,CANVULN-045,Low,Rename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'
+SQI-034,SonarQube_Issues,NONE,CANVULN-045,Informational,Complete the task associated to this TODO comment.
+SQI-035,SonarQube_Issues,NONE,CANVULN-045,Medium,This block of commented-out lines of code should be removed.
+SQI-036,SonarQube_Issues,NONE,CANVULN-045,Informational,Complete the task associated to this TODO comment.
+SQI-037,SonarQube_Issues,NONE,CANVULN-045,Medium,This block of commented-out lines of code should be removed.
+SQI-038,SonarQube_Issues,NONE,CANVULN-045,Critical,"Add a nested comment explaining why this method is empty, throw an UnsupportedOp"
+SQI-039,SonarQube_Issues,NONE,CANVULN-045,Informational,Complete the task associated to this TODO comment.
+SQI-040,SonarQube_Issues,NONE,CANVULN-045,Low,"Remove this use of ""URL""; it is deprecated."
+SQI-041,SonarQube_Issues,NONE,CANVULN-045,Medium,"Add the ""@Override"" annotation above this method signature"
+SQI-042,SonarQube_Issues,NONE,CANVULN-045,Critical,Remove usage of generic wildcard type.
+SQI-043,SonarQube_Issues,NONE,CANVULN-045,Medium,"Add the ""@Override"" annotation above this method signature"
+SQI-044,SonarQube_Issues,NONE,CANVULN-045,Medium,"Add the ""@Override"" annotation above this method signature"
+SQI-045,SonarQube_Issues,NONE,CANVULN-045,Critical,Remove usage of generic wildcard type.
+SQI-046,SonarQube_Issues,NONE,CANVULN-045,Medium,"Rename ""comments"" which hides the field declared at line 39."
+SQI-047,SonarQube_Issues,NONE,CANVULN-045,Informational,Complete the task associated to this TODO comment.
+SQI-048,SonarQube_Issues,NONE,CANVULN-045,Medium,"Rename ""comments"" which hides the field declared at line 33."
+SQI-049,SonarQube_Issues,NONE,CANVULN-045,Medium,"A ""Map<WebGoatUser, Comments>"" cannot contain a ""String"" in a ""WebGoatUser"" type"
+SQI-050,SonarQube_Issues,NONE,CANVULN-045,Informational,Remove this 'public' modifier.
+SQI-051,SonarQube_Issues,NONE,CANVULN-045,High,"Use try-with-resources or close this ""Statement"" in a ""finally"" clause."
+SQI-052,SonarQube_Issues,NONE,CANVULN-045,High,"Use try-with-resources or close this ""Statement"" in a ""finally"" clause."
+SQI-053,SonarQube_Issues,NONE,CANVULN-045,Informational,Remove this 'public' modifier.
+SQI-054,SonarQube_Issues,NONE,CANVULN-045,Informational,Remove this 'public' modifier.
+SQI-055,SonarQube_Issues,NONE,CANVULN-045,Informational,Remove this 'public' modifier.
+SQI-056,SonarQube_Issues,NONE,CANVULN-045,Informational,Remove this 'public' modifier.
+SQI-057,SonarQube_Issues,NONE,CANVULN-045,Low,Use assertThat(actual).endsWith(expected) instead.
+SQI-058,SonarQube_Issues,NONE,CANVULN-045,Low,Use assertThat(actual).contains(expected) instead.
+SQI-059,SonarQube_Issues,NONE,CANVULN-045,Low,Use assertThat(actual).contains(expected) instead.
+SQI-060,SonarQube_Issues,NONE,CANVULN-045,Low,Use assertThat(actual).hasSize(expected) instead.
+SQI-061,SonarQube_Issues,NONE,CANVULN-045,Low,Use isEmpty() instead.
+SQI-062,SonarQube_Issues,NONE,CANVULN-045,Critical,"Define a constant instead of duplicating this literal ""files"" 3 times."
+SQI-063,SonarQube_Issues,NONE,CANVULN-045,Low,Use a primitive boolean expression here.
+SQI-064,SonarQube_Issues,NONE,CANVULN-045,Medium,"A ""NullPointerException"" could be thrown; ""url"" is nullable here."
+SQI-065,SonarQube_Issues,NONE,CANVULN-045,Critical,"Define a constant instead of duplicating this literal ""/login"" 3 times."
+SQI-066,SonarQube_Issues,NONE,CANVULN-045,Low,Remove useless curly braces around statement
+SQI-067,SonarQube_Issues,NONE,CANVULN-045,Medium,This branch's code block is the same as the block for the branch on line 60.
+SQI-068,SonarQube_Issues,NONE,CANVULN-045,Medium,"Remove this unused private ""JWTHeaderKIDEndpoint"" constructor."
+SQI-069,SonarQube_Issues,NONE,CANVULN-045,Informational,Remove this 'public' modifier.
+SQI-070,SonarQube_Issues,NONE,CANVULN-045,Informational,Remove this 'public' modifier.
+SQI-071,SonarQube_Issues,NONE,CANVULN-045,Critical,Refactor this method to reduce its Cognitive Complexity from 16 to the 15 allowe
+SQI-072,SonarQube_Issues,CWE-916,CANVULN-041,Critical,"Don't use the default ""PasswordEncoder"" relying on plain-text."
+SQI-073,SonarQube_Issues,NONE,CANVULN-045,Medium,"Rename field ""FLAGS"""
+SQI-074,SonarQube_Issues,NONE,CANVULN-045,Low,"Rename this field ""FLAGS"" to match the regular expression '^[a-z][a-zA-Z0-9]*$'."
+SQI-075,SonarQube_Issues,NONE,CANVULN-045,Critical,"Save and re-use this ""Random""."
+SQI-076,SonarQube_Issues,NONE,CANVULN-045,Critical,"Define a constant instead of duplicating this literal ""classpath:/"" 4 times."
+SQI-077,SonarQube_Issues,NONE,CANVULN-045,Low,Remove useless curly braces around statement
+SQI-078,SonarQube_Issues,NONE,CANVULN-045,Critical,"Define a constant instead of duplicating this literal ""secQuestion0"" 7 times."
+SQI-079,SonarQube_Issues,NONE,CANVULN-045,Critical,"Define a constant instead of duplicating this literal ""secQuestion1"" 7 times."
+SQI-080,SonarQube_Issues,NONE,CANVULN-045,Low,Replace this if-then-else statement by a single return statement.
+SQI-081,SonarQube_Issues,NONE,CANVULN-045,Low,"Remove the declaration of thrown exception 'jakarta.servlet.ServletException', a"
+SQI-082,SonarQube_Issues,NONE,CANVULN-045,Low,"Remove the declaration of thrown exception 'java.io.IOException', as it cannot b"
+SQI-083,SonarQube_Issues,NONE,CANVULN-045,Medium,"Change this condition so that it does not always evaluate to ""false"""
+SQI-084,SonarQube_Issues,NONE,CANVULN-045,Medium,Define and throw a dedicated exception instead of using a generic one.
+SQI-085,SonarQube_Issues,NONE,CANVULN-045,Low,Rename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'
+SQI-086,SonarQube_Issues,NONE,CANVULN-045,Low,Rename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'
+SQI-087,SonarQube_Issues,NONE,CANVULN-045,High,"Use try-with-resources or close this ""PreparedStatement"" in a ""finally"" clause."
+SQI-088,SonarQube_Issues,NONE,CANVULN-045,Medium,Replace this String concatenation with Text block.
+SQI-089,SonarQube_Issues,NONE,CANVULN-045,Medium,Remove these useless parentheses.
+SQI-090,SonarQube_Issues,NONE,CANVULN-045,Medium,Remove these useless parentheses.
+SQI-091,SonarQube_Issues,NONE,CANVULN-045,Medium,Remove these useless parentheses.
+SQI-092,SonarQube_Issues,NONE,CANVULN-045,Medium,Remove these useless parentheses.
+SQI-093,SonarQube_Issues,NONE,CANVULN-045,Medium,Replace this use of System.out or System.err by a logger.
+SQI-094,SonarQube_Issues,NONE,CANVULN-045,Critical,Remove usage of generic wildcard type.
+SQI-095,SonarQube_Issues,NONE,CANVULN-045,Low,Replace this lambda with method reference 'Entry::getValue'.
+SQI-096,SonarQube_Issues,NONE,CANVULN-045,Low,Rename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'
+SQI-097,SonarQube_Issues,NONE,CANVULN-045,Low,Rename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'
+SQI-098,SonarQube_Issues,NONE,CANVULN-045,Low,Rename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'
+SQI-099,SonarQube_Issues,NONE,CANVULN-045,Low,Rename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'
+SQI-100,SonarQube_Issues,NONE,CANVULN-045,Critical,"Define a constant instead of duplicating this literal ""UTF-8"" 4 times."
+SQH-001,SonarQube_Hotspots,CWE-287,CANVULN-012,High,"'PASSWORD' detected in this expression, review this potentially hard-coded passw"
+SQH-002,SonarQube_Hotspots,CWE-287,CANVULN-012,High,"'PASSWORD' detected in this expression, review this potentially hard-coded passw"
+SQH-003,SonarQube_Hotspots,CWE-287,CANVULN-012,High,"'password' detected in this expression, review this potentially hard-coded passw"
+SQH-004,SonarQube_Hotspots,CWE-287,CANVULN-012,High,"'password' detected in this expression, review this potentially hard-coded passw"
+SQH-005,SonarQube_Hotspots,CWE-287,CANVULN-012,High,"'password' detected in this expression, review this potentially hard-coded passw"
+SQH-006,SonarQube_Hotspots,CWE-287,CANVULN-012,High,"'PASSWORD' detected in this expression, review this potentially hard-coded passw"
+SQH-007,SonarQube_Hotspots,CWE-287,CANVULN-012,High,"'PASSWORD' detected in this expression, review this potentially hard-coded passw"
+SQH-008,SonarQube_Hotspots,CWE-287,CANVULN-012,High,"'password' detected in this expression, review this potentially hard-coded passw"
+SQH-009,SonarQube_Hotspots,CWE-287,CANVULN-012,High,"'PASSWORD' detected in this expression, review this potentially hard-coded passw"
+SQH-010,SonarQube_Hotspots,CWE-287,CANVULN-012,High,"'PASSWORD' detected in this expression, review this potentially hard-coded passw"
+SQH-011,SonarQube_Hotspots,CWE-287,CANVULN-012,High,"'password' detected in this expression, review this potentially hard-coded passw"
+SQH-012,SonarQube_Hotspots,CWE-287,CANVULN-012,High,"'PASSWORD' detected in this expression, review this potentially hard-coded passw"
+SQH-013,SonarQube_Hotspots,CWE-287,CANVULN-012,High,"'password' detected in this expression, review this potentially hard-coded passw"
+SQH-014,SonarQube_Hotspots,CWE-287,CANVULN-012,High,"'PASSWORD' detected in this expression, review this potentially hard-coded passw"
+SQH-015,SonarQube_Hotspots,CWE-287,CANVULN-012,High,"'password' detected in this expression, review this potentially hard-coded passw"
+SQH-016,SonarQube_Hotspots,CWE-352,CANVULN-020,High,Make sure allowing safe and unsafe HTTP methods is safe here.
+SQH-017,SonarQube_Hotspots,CWE-352,CANVULN-020,High,Make sure allowing safe and unsafe HTTP methods is safe here.
+SQH-018,SonarQube_Hotspots,CWE-352,CANVULN-020,High,Make sure allowing safe and unsafe HTTP methods is safe here.
+SQH-019,SonarQube_Hotspots,CWE-352,CANVULN-020,High,Make sure allowing safe and unsafe HTTP methods is safe here.
+SQH-020,SonarQube_Hotspots,CWE-352,CANVULN-020,High,Make sure allowing safe and unsafe HTTP methods is safe here.
+SQH-021,SonarQube_Hotspots,CWE-352,CANVULN-020,High,Make sure allowing safe and unsafe HTTP methods is safe here.
+SQH-022,SonarQube_Hotspots,CWE-352,CANVULN-020,High,Make sure allowing safe and unsafe HTTP methods is safe here.
+SQH-023,SonarQube_Hotspots,CWE-352,CANVULN-020,High,Make sure allowing safe and unsafe HTTP methods is safe here.
+SQH-024,SonarQube_Hotspots,CWE-352,CANVULN-020,High,Make sure allowing safe and unsafe HTTP methods is safe here.
+SQH-025,SonarQube_Hotspots,CWE-352,CANVULN-020,High,Make sure allowing safe and unsafe HTTP methods is safe here.
+SQH-026,SonarQube_Hotspots,CWE-352,CANVULN-020,High,Make sure allowing safe and unsafe HTTP methods is safe here.
+SQH-027,SonarQube_Hotspots,CWE-352,CANVULN-020,High,Make sure allowing safe and unsafe HTTP methods is safe here.
+SQH-028,SonarQube_Hotspots,CWE-352,CANVULN-020,High,Make sure allowing safe and unsafe HTTP methods is safe here.
+SQH-029,SonarQube_Hotspots,CWE-352,CANVULN-020,High,Make sure allowing safe and unsafe HTTP methods is safe here.
+SQH-030,SonarQube_Hotspots,CWE-352,CANVULN-020,High,Make sure disabling Spring Security's CSRF protection is safe here.
+SQH-031,SonarQube_Hotspots,CWE-352,CANVULN-020,High,Make sure disabling Spring Security's CSRF protection is safe here.
+SQH-032,SonarQube_Hotspots,CWE-89,CANVULN-040,High,Make sure using a dynamically formatted SQL query is safe here.
+SQH-033,SonarQube_Hotspots,CWE-89,CANVULN-040,High,Make sure using a dynamically formatted SQL query is safe here.
+SQH-034,SonarQube_Hotspots,CWE-89,CANVULN-040,High,Make sure using a dynamically formatted SQL query is safe here.
+SQH-035,SonarQube_Hotspots,CWE-89,CANVULN-040,High,Make sure using a dynamically formatted SQL query is safe here.
+SQH-036,SonarQube_Hotspots,CWE-89,CANVULN-040,High,Make sure using a dynamically formatted SQL query is safe here.
+SQH-037,SonarQube_Hotspots,CWE-89,CANVULN-040,High,Make sure using a dynamically formatted SQL query is safe here.
+SQH-038,SonarQube_Hotspots,CWE-89,CANVULN-040,High,Make sure using a dynamically formatted SQL query is safe here.
+SQH-039,SonarQube_Hotspots,CWE-89,CANVULN-040,High,Make sure using a dynamically formatted SQL query is safe here.
+SQH-040,SonarQube_Hotspots,CWE-89,CANVULN-040,High,Make sure using a dynamically formatted SQL query is safe here.
+SQH-041,SonarQube_Hotspots,CWE-89,CANVULN-040,High,Make sure using a dynamically formatted SQL query is safe here.
+SQH-042,SonarQube_Hotspots,CWE-89,CANVULN-040,High,Make sure using a dynamically formatted SQL query is safe here.
+SQH-043,SonarQube_Hotspots,CWE-400,CANVULN-023,Medium,"Make sure the regex used here, which is vulnerable to polynomial runtime due to "
+SQH-044,SonarQube_Hotspots,CWE-400,CANVULN-023,Medium,"Make sure the regex used here, which is vulnerable to polynomial runtime due to "
+SQH-045,SonarQube_Hotspots,CWE-400,CANVULN-023,Medium,"Make sure the regex used here, which is vulnerable to polynomial runtime due to "
+SQH-046,SonarQube_Hotspots,CWE-326,CANVULN-016,Medium,Make sure that using this pseudorandom number generator is safe here.
+SQH-047,SonarQube_Hotspots,CWE-326,CANVULN-016,Medium,Make sure that using this pseudorandom number generator is safe here.
+SQH-048,SonarQube_Hotspots,CWE-326,CANVULN-016,Medium,Make sure that using this pseudorandom number generator is safe here.
+SQH-049,SonarQube_Hotspots,CWE-326,CANVULN-016,Medium,Make sure that using this pseudorandom number generator is safe here.
+SQH-050,SonarQube_Hotspots,CWE-326,CANVULN-016,Medium,Make sure that using this pseudorandom number generator is safe here.
+SQH-051,SonarQube_Hotspots,CWE-326,CANVULN-016,Medium,Make sure that using this pseudorandom number generator is safe here.
+SQH-052,SonarQube_Hotspots,CWE-326,CANVULN-016,Medium,Make sure that using this pseudorandom number generator is safe here.
+SQH-053,SonarQube_Hotspots,CWE-326,CANVULN-016,Medium,Make sure that using this pseudorandom number generator is safe here.
+SQH-054,SonarQube_Hotspots,CWE-326,CANVULN-016,Medium,Make sure that using this pseudorandom number generator is safe here.
+SQH-055,SonarQube_Hotspots,CWE-326,CANVULN-016,Medium,Make sure that using this pseudorandom number generator is safe here.
+SQH-056,SonarQube_Hotspots,CWE-326,CANVULN-016,Medium,Make sure that using this pseudorandom number generator is safe here.
+SQH-057,SonarQube_Hotspots,CWE-326,CANVULN-016,Medium,Make sure that using this pseudorandom number generator is safe here.
+SQH-058,SonarQube_Hotspots,CWE-326,CANVULN-016,Medium,Make sure that using this pseudorandom number generator is safe here.
+SQH-059,SonarQube_Hotspots,CWE-326,CANVULN-016,Medium,Make sure that using this pseudorandom number generator is safe here.
+SQH-060,SonarQube_Hotspots,CWE-326,CANVULN-016,Medium,Make sure that using this pseudorandom number generator is safe here.
+SQH-061,SonarQube_Hotspots,CWE-16,CANVULN-005,Low,Make sure this debug feature is deactivated before delivering the code in produc
+SQH-062,SonarQube_Hotspots,CWE-16,CANVULN-005,Low,Make sure this debug feature is deactivated before delivering the code in produc
+SQH-063,SonarQube_Hotspots,CWE-16,CANVULN-005,Low,Make sure this debug feature is deactivated before delivering the code in produc
+SQH-064,SonarQube_Hotspots,CWE-16,CANVULN-005,Low,Make sure this debug feature is deactivated before delivering the code in produc
+SQH-065,SonarQube_Hotspots,NONE,CANVULN-045,Low,Make sure publicly writable directories are used safely here.
+SQH-066,SonarQube_Hotspots,NONE,CANVULN-045,Low,Make sure that expanding this archive file is safe here.
+SQH-067,SonarQube_Hotspots,NONE,CANVULN-045,Low,Make sure this weak hash algorithm is not used in a sensitive context here.
+SQH-068,SonarQube_Hotspots,NONE,CANVULN-045,Low,Make sure this weak hash algorithm is not used in a sensitive context here.
+SQH-069,SonarQube_Hotspots,NONE,CANVULN-045,Low,Make sure this weak hash algorithm is not used in a sensitive context here.
+SNYK-001,Snyk,CWE-454,CANVULN-027,Medium,External Initialization of Trusted Variables or Data Stores
+SNYK-002,Snyk,CWE-454,CANVULN-027,Low,External Initialization of Trusted Variables or Data Stores
+SNYK-003,Snyk,CWE-770,CANVULN-037,High,Allocation of Resources Without Limits or Throttling
+SNYK-004,Snyk,CWE-770,CANVULN-037,High,Allocation of Resources Without Limits or Throttling
+SNYK-005,Snyk,CWE-502,CANVULN-030,High,Deserialization of Untrusted Data
+SNYK-006,Snyk,CWE-22,CANVULN-010,Medium,Arbitrary File Deletion
+SNYK-007,Snyk,CWE-918,CANVULN-042,Medium,Server-Side Request Forgery (SSRF)
+SNYK-008,Snyk,CWE-502,CANVULN-030,Medium,Deserialization of Untrusted Data
+SNYK-009,Snyk,CWE-502,CANVULN-030,Medium,Deserialization of Untrusted Data
+SNYK-010,Snyk,CWE-502,CANVULN-030,Medium,Deserialization of Untrusted Data
+SNYK-011,Snyk,CWE-502,CANVULN-030,Medium,Deserialization of Untrusted Data
+SNYK-012,Snyk,CWE-502,CANVULN-030,Medium,Deserialization of Untrusted Data
+SNYK-013,Snyk,CWE-502,CANVULN-030,Medium,Deserialization of Untrusted Data
+SNYK-014,Snyk,CWE-502,CANVULN-030,Medium,Deserialization of Untrusted Data
+SNYK-015,Snyk,CWE-502,CANVULN-030,Medium,Deserialization of Untrusted Data
+SNYK-016,Snyk,CWE-502,CANVULN-030,Medium,Deserialization of Untrusted Data
+SNYK-017,Snyk,CWE-502,CANVULN-030,High,Deserialization of Untrusted Data
+SNYK-018,Snyk,CWE-502,CANVULN-030,Medium,Deserialization of Untrusted Data
+SNYK-019,Snyk,CWE-502,CANVULN-030,Medium,Deserialization of Untrusted Data
+SNYK-020,Snyk,CWE-434,CANVULN-025,High,Arbitrary Code Execution
+SNYK-021,Snyk,CWE-434,CANVULN-025,High,Arbitrary Code Execution
+SNYK-022,Snyk,CWE-94,CANVULN-043,High,Arbitrary Code Execution
+SNYK-023,Snyk,CWE-434,CANVULN-025,High,Arbitrary Code Execution
+SNYK-024,Snyk,CWE-434,CANVULN-025,High,Arbitrary Code Execution
+SNYK-025,Snyk,CWE-434,CANVULN-025,High,Arbitrary Code Execution
+SNYK-026,Snyk,CWE-434,CANVULN-025,High,Arbitrary Code Execution
+SNYK-027,Snyk,CWE-94,CANVULN-043,High,Remote Code Execution (RCE)
+SNYK-028,Snyk,CWE-434,CANVULN-025,High,Arbitrary Code Execution
+SNYK-029,Snyk,CWE-434,CANVULN-025,High,Arbitrary Code Execution
+SNYK-030,Snyk,CWE-434,CANVULN-025,High,Arbitrary Code Execution
+SNYK-031,Snyk,CWE-502,CANVULN-030,Medium,Denial of Service (DoS)
+SNYK-032,Snyk,CWE-502,CANVULN-030,High,Deserialization of Untrusted Data
+SNYK-033,Snyk,CWE-502,CANVULN-030,High,Server-Side Request Forgery (SSRF)
+SNYK-034,Snyk,CWE-400,CANVULN-023,High,Denial of Service (DoS)
+SNYK-035,Snyk,CWE-200,CANVULN-007,High,XML External Entity (XXE) Injection
+SNYK-036,Snyk,CWE-400,CANVULN-023,Medium,Denial of Service (DoS)
+SNYK-037,Snyk,CWE-20,CANVULN-006,High,Denial of Service (DoS)
+SNYK-038,Snyk,CWE-400,CANVULN-023,Medium,Denial of Service (DoS)
+SNYK-039,Snyk,CWE-94,CANVULN-043,Medium,Insecure XML deserialization
+SNYK-040,Snyk,CWE-502,CANVULN-030,High,Deserialization of Untrusted Data
+SNYK-041,Snyk,CWE-674,CANVULN-034,High,Uncontrolled Recursion
+SNYK-042,Snyk,CWE-404,CANVULN-024,Medium,Improper Resource Shutdown or Release
+SNYK-043,Snyk,CWE-295,CANVULN-014,Critical,Improper Certificate Validation
+SNYK-044,Snyk,CWE-863,CANVULN-039,High,Incorrect Authorization
+SNYK-045,Snyk,CWE-285,CANVULN-011,Low,Improper Authorization
+SNYK-046,Snyk,CWE-287,CANVULN-012,High,Improper Authentication
+SNYK-047,Snyk,CWE-116,CANVULN-002,Medium,Improper Encoding or Escaping of Output
+SNYK-048,Snyk,CWE-287,CANVULN-012,High,Improper Authentication
+SNYK-049,Snyk,CWE-444,CANVULN-026,High,HTTP Request Smuggling
+SNYK-050,Snyk,CWE-601,CANVULN-033,Medium,Open Redirect
+SNYK-051,Snyk,CWE-770,CANVULN-037,High,Allocation of Resources Without Limits or Throttling
+SNYK-052,Snyk,CWE-400,CANVULN-023,High,Denial of Service (DoS)
+SNYK-053,Snyk,CWE-789,CANVULN-038,High,Memory Allocation with Excessive Size Value
+SNYK-054,Snyk,CWE-400,CANVULN-023,High,Denial of Service (DoS)
+SNYK-055,Snyk,CWE-74,CANVULN-036,Low,Improper Neutralization of Special Elements in Output Used by a Downstream Compo
+SNYK-056,Snyk,CWE-459,CANVULN-028,High,Incomplete Cleanup
+SNYK-057,Snyk,CWE-74,CANVULN-036,Low,Improper Neutralization of Special Elements in Output Used by a Downstream Compo
+SNYK-058,Snyk,CWE-22,CANVULN-010,High,Directory Traversal
+SNYK-059,Snyk,CWE-444,CANVULN-026,Low,HTTP Request Smuggling
+SNYK-060,Snyk,CWE-770,CANVULN-037,Medium,Allocation of Resources Without Limits or Throttling
+SNYK-061,Snyk,CWE-288,CANVULN-013,Critical,Authentication Bypass Using an Alternate Path or Channel
+SNYK-062,Snyk,CWE-288,CANVULN-013,Critical,Authentication Bypass Using an Alternate Path or Channel
+SNYK-063,Snyk,CWE-288,CANVULN-013,Critical,Authentication Bypass Using an Alternate Path or Channel
+SNYK-064,Snyk,CWE-288,CANVULN-013,Critical,Authentication Bypass Using an Alternate Path or Channel
+SNYK-065,Snyk,CWE-297,CANVULN-015,Low,Improper Validation of Certificate with Host Mismatch
+SNYK-066,Snyk,CWE-297,CANVULN-015,Low,Improper Validation of Certificate with Host Mismatch
+SNYK-067,Snyk,CWE-338,CANVULN-018,High,Use of Cryptographically Weak Pseudo-Random Number Generator (PRNG)
+SNYK-068,Snyk,CWE-377,CANVULN-022,High,Insecure Temporary File
+SNYK-069,Snyk,CWE-59,CANVULN-032,Medium,Symlink Attack
+SNYK-070,Snyk,CWE-524,CANVULN-031,Critical,Use of Cache Containing Sensitive Information
+SNYK-071,Snyk,CWE-367,CANVULN-021,Medium,Time-of-check Time-of-use (TOCTOU) Race Condition
+SNYK-072,Snyk,CWE-203,CANVULN-008,Medium,Information Exposure
+SNYK-073,Snyk,CWE-345,CANVULN-019,Medium,Insufficient Verification of Data Authenticity
+SNYK-074,Snyk,CWE-1336,CANVULN-004,Critical,Template Injection
+SNYK-075,Snyk,CWE-1336,CANVULN-004,Critical,Template Injection
+SNYK-076,Snyk,CWE-1336,CANVULN-004,Critical,Template Injection
+SNYK-077,Snyk,CWE-1336,CANVULN-004,Critical,Template Injection
+ZAP-001,ZAP,CWE-352,CANVULN-020,Medium,Absence of Anti-CSRF Tokens
+ZAP-002,ZAP,CWE-693,CANVULN-035,Medium,Content Security Policy (CSP) Header Not Set
+ZAP-003,ZAP,CWE-1021,CANVULN-001,Medium,Missing Anti-clickjacking Header
+ZAP-004,ZAP,CWE-215,CANVULN-009,Medium,Spring Actuator Information Leak
+ZAP-005,ZAP,CWE-1275,CANVULN-003,Low,Cookie without SameSite Attribute
+ZAP-006,ZAP,CWE-693,CANVULN-035,Low,X-Content-Type-Options Header Missing
+ZAP-007,ZAP,NONE,CANVULN-045,Informational,Authentication Request Identified
+ZAP-008,ZAP,NONE,CANVULN-045,Informational,Session Management Response Identified
+ZAP-009,ZAP,NONE,CANVULN-045,Informational,User Agent Fuzzer
+ZAP-010,ZAP,CWE-20,CANVULN-006,Informational,User Controllable HTML Element Attribute (Potential XSS)

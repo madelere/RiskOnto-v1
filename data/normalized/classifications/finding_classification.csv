@@ -1,0 +1,45 @@
+canonical_finding_id,canonical_name,cwe,riskonto_vp,severity,classification
+CF-CANVULN-001,Clickjacking via Missing Frame Options Header,CWE-1021,NONE,Medium,ConfigurationWeakness
+CF-CANVULN-002,Vulnerability (CWE-116),CWE-116,NONE,Medium,DependencyWeakness
+CF-CANVULN-003,Insecure Cookie Attribute (SameSite Missing),CWE-1275,NONE,Low,ConfigurationWeakness
+CF-CANVULN-004,Server-Side Template Injection,CWE-1336,NONE,Critical,DependencyWeakness
+CF-CANVULN-005,Insecure Configuration,CWE-16,NONE,Low,SecurityWeakness
+CF-CANVULN-006,Improper Input Validation,CWE-20,NONE,High,SecurityWeakness
+CF-CANVULN-007,Vulnerability (CWE-200),CWE-200,VulnProfile_Public_Storage_Exposure,High,DependencyWeakness
+CF-CANVULN-008,Vulnerability (CWE-203),CWE-203,NONE,Medium,DependencyWeakness
+CF-CANVULN-009,Information Exposure via Debug / Actuator,CWE-215,NONE,Medium,ConfigurationWeakness
+CF-CANVULN-010,Path Traversal,CWE-22,VulnProfile_Path_Traversal,High,ExploitableVulnerability
+CF-CANVULN-011,Vulnerability (CWE-285),CWE-285,VulnProfile_Account_Abuse,Low,DependencyWeakness
+CF-CANVULN-012,Improper Authentication,CWE-287,VulnProfile_Weak_MFA,High,ExploitableVulnerability
+CF-CANVULN-013,Authentication Bypass,CWE-288,NONE,Critical,DependencyWeakness
+CF-CANVULN-014,Vulnerability (CWE-295),CWE-295,VulnProfile_Weak_TLS_Configuration,Critical,DependencyWeakness
+CF-CANVULN-015,Vulnerability (CWE-297),CWE-297,NONE,Low,DependencyWeakness
+CF-CANVULN-016,Inadequate Encryption Strength,CWE-326,NONE,Medium,SecurityWeakness
+CF-CANVULN-017,Weak Cryptographic Hash,CWE-328,NONE,Medium,SecurityWeakness
+CF-CANVULN-018,Vulnerability (CWE-338),CWE-338,NONE,High,DependencyWeakness
+CF-CANVULN-019,Vulnerability (CWE-345),CWE-345,VulnProfile_Adversarial_AI_Attack,Medium,DependencyWeakness
+CF-CANVULN-020,Cross-Site Request Forgery,CWE-352,VulnProfile_Cross_Site_Request_Forgery,High,ExploitableVulnerability
+CF-CANVULN-021,Vulnerability (CWE-367),CWE-367,NONE,Medium,DependencyWeakness
+CF-CANVULN-022,Vulnerability (CWE-377),CWE-377,NONE,High,DependencyWeakness
+CF-CANVULN-023,Denial of Service (Resource Exhaustion),CWE-400,NONE,High,SecurityWeakness
+CF-CANVULN-024,Vulnerability (CWE-404),CWE-404,NONE,Medium,DependencyWeakness
+CF-CANVULN-025,Unrestricted File Upload,CWE-434,VulnProfile_Malicious_File_Upload,High,DependencyWeakness
+CF-CANVULN-026,Vulnerability (CWE-444),CWE-444,NONE,High,DependencyWeakness
+CF-CANVULN-027,External Variable Initialization,CWE-454,NONE,Medium,DependencyWeakness
+CF-CANVULN-028,Vulnerability (CWE-459),CWE-459,NONE,High,DependencyWeakness
+CF-CANVULN-029,Trust Boundary Violation,CWE-501,NONE,Medium,SecurityWeakness
+CF-CANVULN-030,Insecure Deserialization,CWE-502,VulnProfile_Pickle_Injection,High,DependencyWeakness
+CF-CANVULN-031,Vulnerability (CWE-524),CWE-524,NONE,Critical,DependencyWeakness
+CF-CANVULN-032,Vulnerability (CWE-59),CWE-59,NONE,Medium,DependencyWeakness
+CF-CANVULN-033,Open Redirect,CWE-601,NONE,Medium,SecurityWeakness
+CF-CANVULN-034,Vulnerability (CWE-674),CWE-674,NONE,High,DependencyWeakness
+CF-CANVULN-035,Missing Security Header (CSP / X-Content-Type),CWE-693,NONE,Medium,ConfigurationWeakness
+CF-CANVULN-036,Injection (Generic),CWE-74,VulnProfile_XML_Injection,Low,DependencyWeakness
+CF-CANVULN-037,Vulnerability (CWE-770),CWE-770,VulnProfile_Rate_Limit_Bypass,High,DependencyWeakness
+CF-CANVULN-038,Vulnerability (CWE-789),CWE-789,NONE,High,DependencyWeakness
+CF-CANVULN-039,Vulnerability (CWE-863),CWE-863,NONE,High,DependencyWeakness
+CF-CANVULN-040,SQL Injection,CWE-89,VulnProfile_SQL_Injection,High,ExploitableVulnerability
+CF-CANVULN-041,Weak Password Hashing,CWE-916,NONE,Critical,SecurityWeakness
+CF-CANVULN-042,Server-Side Request Forgery,CWE-918,NONE,Medium,SecurityWeakness
+CF-CANVULN-043,Vulnerability (CWE-94),CWE-94,VulnProfile_Agent_Injection,High,DependencyWeakness
+CF-CANVULN-045,Code Quality Issue (No CWE),NONE,NONE,Critical,CodeQuality

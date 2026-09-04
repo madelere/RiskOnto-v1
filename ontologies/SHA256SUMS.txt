@@ -1,0 +1,10 @@
+RiskOnto_global_v27_consolidated.owl  745f6491ad746368d804db0efe7278a01f622cb3f4771b29f115942dc21fef40
+WebGoat_SUT_v27_reasoned.owl           23035d938ed02a97e3462d01cf5953e1c25d14c26c4cf8bb93e3ba5ae63dd650
+
+Verify with:  certutil -hashfile <file> SHA256   (Windows)
+          or  sha256sum <file>                    (Linux/macOS)
+
+Both files are copies of the frozen, authoritative research artifacts.
+Neither ontology was regenerated or modified to build this package;
+these checksums were computed against the original files at their
+source location and against these copies, and confirmed identical.

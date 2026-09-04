@@ -1,158 +1,226 @@
-# RiskOnto — Threat Reasoning Ontology
+# RiskOnto
 
-**RiskOnto** is an OWL 2 ontology that operationalises threat-informed risk reasoning for cybersecurity systems. It integrates MITRE ATT&CK, MITRE D3FEND, and NIST Cybersecurity Framework 2.0 (CSF 2.0 / SP 800-53r5) into a single, reusable knowledge graph that supports SWRL-driven explainable risk inference.
+An OWL 2 DL, ontology-driven framework for automated cybersecurity risk
+assessment. RiskOnto integrates five public cybersecurity knowledge sources
+into a single reasoning-ready knowledge graph, materializes cross-framework
+semantic relationships offline via SWRL rules, and lets a System Under Test
+(SUT) inherit the full reasoning chain through a single OWL import — no
+per-SUT re-reasoning required for existing vulnerability archetypes.
 
----
+This repository accompanies the manuscript *"RiskOnto: An Ontology-Driven
+Framework for Threat Modeling, Risk Reasoning, and Cyber Defense Knowledge
+Integration"* (M. A. Adelere), currently under revision at *Computers &
+Security*. It packages the authoritative ontology, the source code used to
+build and reason over it, the WebGoat case-study data, and the evidence
+supporting every number reported in the paper.
 
-## Repository Contents
+## 1. Knowledge sources integrated
 
-| File | Type | Description |
-|------|------|-------------|
-| `RiskOnto_v1_revised.owl` | Global Ontology | Reusable threat reasoning core — 100,016 triples |
-| `WebGoat_SUT.owl` | SUT Ontology | Experimental population of RiskOnto against OWASP WebGoat |
+- **MITRE CWE** (264 weaknesses referenced)
+- **MITRE ATT&CK** (995 techniques)
+- **MITRE D3FEND** (383 defensive techniques)
+- **NIST Cybersecurity Framework (CSF) 2.0** (106 subcategories, 22
+  categories, 6 functions)
+- **NIST SP 800-53 Revision 5** (119 controls)
 
----
+## 2. Authoritative ontology artifact
 
-## `RiskOnto_v1_revised.owl` — Global Ontology
-
-The global ontology is the **reusable, SUT-independent core**. It encodes the complete threat reasoning knowledge base and is intended to be imported by any System Under Test (SUT) ontology.
-
-### Key Metrics
-
-| Layer | Count |
-|-------|-------|
-| VulnerabilityProfile individuals | 116 |
-| ATT&CK Techniques | 995 (Enterprise + Mobile + ICS) |
-| Mitigations | 111 |
-| D3FEND Techniques | 383 |
-| CWE Individuals | 250 |
-| NIST CSF 2.0 Subcategories | 106 |
-| ThreatScenario individuals | 352 |
-| RiskAssessment individuals | 352 |
-| Total OWL triples | 100,016 |
-
-### Architecture
+`ontologies/RiskOnto_global_v27_consolidated.owl` is the frozen, authoritative
+global ontology: 103,906 substantive RDF triples, 123 OWL 2 DL classes, 70
+object properties, 24 datatype properties, 121 `VulnerabilityProfile`
+archetypes, 352 `RiskAssessment` individuals, 2,824 cross-framework mapping
+individuals. It was not modified to build this repository.
 
 ```
-VulnerabilityProfile
-  ├─ mappedToCWE          → CWE
-  ├─ exploitableByTechnique → ATT&CK Technique
-  │     └─ mitigatedBy    → Mitigation
-  │           └─ implementedBy → D3FEND Technique
-  ├─ affectsSubcategory   → NIST CSF 2.0 Subcategory
-  ├─ affectsFunction      → NIST CSF 2.0 Function
-  ├─ recommendedFor       → (Mitigation → VP, materialised)
-  └─ recommendedD3FEND    → (D3FEND → VP, materialised)
+SHA-256: 745f6491ad746368d804db0efe7278a01f622cb3f4771b29f115942dc21fef40
 ```
 
-### SWRL Reasoning Rules
+Verify with `certutil -hashfile ontologies/RiskOnto_global_v27_consolidated.owl SHA256`
+(Windows) or `sha256sum ontologies/RiskOnto_global_v27_consolidated.owl`
+(Linux/macOS) — see `ontologies/SHA256SUMS.txt`.
 
-Thirteen SWRL rules (SI-7, SI-9, SI-11) materialise the full reasoning chain when an `Asset` is linked to a `VulnerabilityProfile` via `hasVulnerability`:
+## 3. WebGoat SUT case study
 
-- **R1–R4**: ATT&CK chain, mitigation recommendations, D3FEND, NIST compliance gap
-- **X1–X5**: Explainability layer — `RiskJustification`, `MitigationJustification`, `DefenseJustification`, `RiskScore`, `ExplanationStatement`
-- **E1–E3**: Risk level assignment from impact × likelihood
+`ontologies/WebGoat_SUT_v27_reasoned.owl` is the reasoned SUT ontology for
+the paper's case study against **OWASP WebGoat 2025.4-SNAPSHOT**, an
+intentionally insecure Spring Boot training application. SHA-256:
+`23035d938ed02a97e3462d01cf5953e1c25d14c26c4cf8bb93e3ba5ae63dd650`
+(see `ontologies/SHA256SUMS.txt`). Raw scanner output and every intermediate
+normalization/canonicalization artifact are in `data/` (see `data/README.md`).
 
-### Semantic Integrity
+## 4. Reasoning architecture: offline materialization, not runtime SWRL execution
 
-- Certified at **Semantic Integrity Score 100/100** (SI-11.1 audit)
-- No synthetic ATT&CK or D3FEND mappings
-- All 462 `recommendedFor` and 2,814 `recommendedD3FEND` triples materialised from authoritative source data
-- NIST CSF 2.0 backbone: 120 D3FEND→NIST `supports` triples; 810 Mitigation→NIST `supportsSubcategory` triples
+All 13 global SWRL rules (`R1-R4`, `E1-E4`, `X1-X5`) are formally declared
+in the ontology as `swrl:Imp` individuals, but were **materialized once,
+offline**, by a Python/`rdflib` forward-chaining implementation
+(`src/reasoning/`) — no certified DL/SWRL reasoner was invoked to *produce*
+this output. The resulting triples are serialized directly into the
+released `.owl` file. A separate, fourteenth rule (SI-12,
+`src/reasoning/riskonto_si12.py`) performs SUT-side `VulnerabilityProfile`
+activation, also offline, at SUT-population time — not live at query time.
 
----
+A SUT integrates by importing the pre-reasoned global ontology through a
+single `owl:imports` declaration and inheriting all pre-materialized
+properties via ordinary OWL property traversal and read-only SPARQL
+retrieval; no SWRL rule is re-executed at load or query time for any
+already-matched `VulnerabilityProfile`.
 
-## `WebGoat_SUT.owl` — WebGoat System Under Test
+**HermiT 1.4.3.456** (via Protégé 5.6) was used only for OWL 2 DL
+**consistency checking** of the asserted-plus-materialized ontology (no
+inconsistencies reported) — a distinct exercise from SWRL materialization,
+which HermiT was never invoked to perform. See
+`evidence/HERMIT_PROTEGE_CONSISTENCY_EVIDENCE.md`.
 
-`WebGoat_SUT.owl` is an **experimental SUT ontology** that applies RiskOnto to [OWASP WebGoat](https://owasp.org/www-project-webgoat/) — a deliberately insecure Java Spring web application used for security training. It is provided as a reference integration to demonstrate how RiskOnto reasoning activates against real scanner evidence.
+## 5. The 13 global SWRL rules + separate SUT-specific SI-12
 
-### Evidence Sources
+13 reusable **global** rules (`src/reasoning/si7_reasoning_implementation.py`
+= R1-R4; `src/reasoning/si9_implementation.py` = E1-E4;
+`src/reasoning/si11_implementation.py` = X1-X5) plus 1 separate,
+**SUT-specific** activation rule (`src/reasoning/riskonto_si12.py` = SI-12)
+— 14 formally-declared SWRL rules in total. Full formal specifications are
+in the manuscript's Appendix A (`manuscript/`).
 
-Four commercial/open-source scanners were run against WebGoat and all findings were normalised before population:
+## 6. 19,671 materialized assertions vs. 847 justification links
 
-| Scanner | Type | Raw Findings |
-|---------|------|-------------|
-| Semgrep | SAST | 17 |
-| SonarQube (Issues + Hotspots) | SAST | 169 |
-| Snyk | SCA | 77 |
-| OWASP ZAP | DAST | 10 |
-| **Total raw** | | **273** |
+These are two distinct outputs and must not be conflated:
 
-### Population Summary
+- **19,671** reusable semantic assertions, from `R1-R4`/`E1-E4` only
+  (framework-outcome association, mitigation propagation, D3FEND
+  recommendation, and their explanation annotations).
+- **847** VP-level `hasJustification` links to typed XAI justification
+  individuals, from `X1`, `X2`, `X4`, `X5` (rule-backed) plus three
+  Python-enrichment justification types: **7 VP-scoped types x 121 VPs =
+  847**. A further 42
+  `DefenseJustification` individuals (from `X3`) are **Mitigation-scoped**,
+  not VP-scoped, and are explicitly excluded from the 847 figure.
 
-| Metric | Value |
-|--------|-------|
-| Canonical security findings | 43 |
-| ExploitableVulnerability | 4 |
-| DependencyWeakness (Snyk) | 26 |
-| ConfigurationWeakness (ZAP) | 5 |
-| SecurityWeakness (CWE, no VP) | 8 |
-| OWL triples | 2,031 |
-| SWRL activation points (`hasVulnerability`) | 13 |
+The separate SI-9 explanation layer contains **121 `ReasoningTrace`
+individuals**, one per `VulnerabilityProfile`, connected through
+`hasReasoningTrace` and `hasExplanation`. These traces are generated by
+`src/reasoning/si9_implementation.py`; they are not SI-11/X1-X5 outputs and
+are not included in the 847 `hasJustification` links.
 
-### Integration Architecture
+## 7. Scanner pipeline: four tools, five report streams
+
+Semgrep, Snyk, SonarQube (contributing **two** streams: Issues and Security
+Hotspots), and OWASP ZAP — four tools, five report streams, 273 raw
+findings in total. Raw outputs: `data/scanner_raw/`.
+
+## 8. Canonicalization: CWE-driven, location-blind
+
+Canonicalization groups raw findings by CWE identity alone
+(`src/sut_pipeline/sut2a_pipeline.py`); scanner provenance is preserved as
+metadata but does not gate merging, and file/line/URL/parameter context is
+**not** currently part of the grouping key — two distinct findings sharing
+a CWE at different locations are collapsed into one canonical record today.
+This is a stated, current limitation, not a hidden one (manuscript
+Sec. VIII-A; `evidence/CANONICALIZATION_FORENSIC_VERIFICATION.md`).
+
+Of **273** raw findings, **166** are CWE-representable and are canonicalized
+into **43** `CanonicalSecurityFinding` individuals; **107** (predominantly
+SonarQube code-quality/informational observations) fall outside the current
+CWE-based canonicalization scope — excluded on representational-scope
+grounds, not because they are judged unimportant or false.
+
+## 9. 43/43 = workflow activation coverage, NOT semantic correctness
+
+All 43 canonical findings activate at least one `VulnerabilityProfile` via
+the SI-12 rule and retrieve the associated cross-framework reasoning chain.
+This is reported as **workflow/activation coverage** — a structural,
+integration-completeness measure — and is explicitly **not** claimed to
+demonstrate that every retrieved relationship is semantically correct or
+contextually appropriate for that finding.
+
+## 10. CV-043: an observed example of semantic over-generalization
+
+`CV-043` (a generic Java/Spring dependency finding, CWE-94) activates 9
+`VulnerabilityProfile` archetypes through the CWE-only SI-12 join — one
+contextually appropriate (`VulnProfile_Code_Injection`), one same-category
+but questionable for this specific finding (`VulnProfile_Template_Injection`),
+and seven domain-mismatched AI/LLM/agent-specific profiles unsupported by
+WebGoat's actual technology stack. This is retained and reported as a
+genuine, observed limitation of the current CWE-only activation
+granularity — never described as "corrected" or as a mapping that was
+fixed. See `evidence/CV043_CURRENT_STATE_FORENSIC_AUDIT.md`.
+
+## 11. Risk scoring: an ordinal risk-prioritization model
+
+Impact and likelihood (integers 1-5 each) are assigned via a
+manually-defined severity-to-score lookup applied to each finding's
+categorical scanner-severity label, giving `riskScoreValue` (impact x
+likelihood, 1-25) stored directly as an asserted ABox value. This is
+**never SWRL-derived and never CVSS-derived**, even though CVSS is present
+in a subset of the raw evidence (see below). See
+`evidence/RISK_SCORE_MECHANISM_FRESH_VERIFICATION.md`.
+
+## 12. CVSS provenance limitation
+
+CVSS scores are present in the raw evidence for 77 of the 273 raw
+observations (the Snyk stream only) but are **not consumed** by the
+risk-scoring pipeline described above. NIST SP 800-30 Rev. 1's
+Impact x Likelihood structure informs, but does not mandate, the framing.
+
+## 13. XAI / structured justification scope
+
+Outputs are described as **structured semantic justification** — typed,
+rule-traceable OWL individuals connected to their source
+`VulnerabilityProfile` — not as a validated, human-evaluated "Explainable
+AI" system. No controlled human-subjects usefulness study has been
+conducted on these outputs.
+
+## 14. Known limitations
+
+- Single-SUT validation (WebGoat only); no second SUT, no expert-panel
+  ground-truth study, no controlled analyst-usefulness study in the
+  present study.
+- Canonicalization is CWE-driven and location-blind (Sec. 8 above).
+- CV-043-style CWE-only over-generalization is not yet mitigated by
+  context-aware matching.
+- Relation-level precision, recall, F1, inter-rater agreement (Cohen's
+  kappa), and multi-run runtime/memory benchmarking have not been
+  established.
+- Risk scoring is a preliminary, manually-parameterized ordinal model, not
+  a validated quantitative methodology.
+- See the manuscript's Conclusion (`manuscript/`) for the full future-work
+  roadmap, and `evidence/REPRODUCIBILITY_GAPS.md` for artifact-level gaps
+  (e.g., exact scanner CLI/plugin versions not recoverable from any
+  available artifact).
+
+## 15. Reproduction instructions
+
+See `ENVIRONMENT.md` for exact software versions and a step-by-step
+reproduction procedure, and `data/README.md` for the data artifacts and a
+documented discrepancy between one intermediate CSV catalog and the final,
+ontology-verified counts (the ontology is always the authoritative source).
+
+## 16. Repository layout
 
 ```
-WebGoat_SUT.owl  imports  RiskOnto_v1_revised.owl
-        │
-        ├─ wg:SystemUnderTest  (WebGoat application)
-        ├─ riskonto:Asset      (Asset_WebGoatApp, Asset_WebGoatDB, …)
-        ├─ wg:CanonicalSecurityFinding  rdfs:subClassOf  riskonto:Evidence
-        ├─ wg:EvidenceBundle            rdfs:subClassOf  riskonto:Evidence
-        │
-        └─ Asset  riskonto:hasVulnerability  VulnerabilityProfile
-                       ↓  (activates 13 SWRL rules)
-                  ATT&CK chain → Mitigations → D3FEND → NIST gap → XAI
+ontologies/    Frozen, authoritative .owl files + SHA-256 checksums
+src/
+  reasoning/       Global SWRL materialization (R1-R4, E1-E4, X1-X5) + SI-12
+  sut_pipeline/    Scanner normalization, canonicalization, SUT population
+  reproducibility/ Ontology inventory / certification report generator
+data/          Raw scanner output + normalized/canonicalization CSVs
+evidence/      Forensic verification reports supporting every reported count
+manuscript/    Final manuscript PDF (for citation; source LaTeX is not
+               duplicated here — see the paper's own repository/DOI record)
+ENVIRONMENT.md Software versions and reproduction steps
 ```
 
-The **sole integration primitive** is one `hasVulnerability` triple per asset. All risk reasoning, mitigation recommendations, D3FEND controls, NIST compliance gaps, and explainability traces are inferred by the global ontology's SWRL rules — the SUT contains only evidence.
+## 17. How to cite
 
-### Namespaces
+M. A. Adelere, "RiskOnto: An Ontology-Driven Framework for Threat Modeling,
+Risk Reasoning, and Cyber Defense Knowledge Integration," 2025-2026.
+Manuscript under revision at *Computers & Security* (COSE-D-26-00974). See
+`manuscript/RiskOnto_Revision2.pdf` for the current revision, and the
+manuscript's own bibliography entry for the citable GitHub record.
 
-| Prefix | IRI |
-|--------|-----|
-| `riskonto:` | `https://cs.unb.ca/ontologies/riskonto#` |
-| `wg:` | `https://cs.unb.ca/ontologies/sut/webgoat#` |
-
-### Experimental Status
-
-WebGoat_SUT.owl is provided for **demonstration and validation** purposes only:
-
-- Risk assessment placeholders (`impact`, `likelihood`) are not scored — scoring is performed in SUT-2C
-- 30 of 43 findings are represented but not yet reasoning-enabled (awaiting RiskOnto v2.5 expansion)
-- The SUT does **not** contain risk scores, compliance recommendations, or D3FEND mappings — all reasoning output is derived exclusively from the Global Ontology
-
----
-
-## Usage
-
-To load and reason over the combined ontology:
-
-```python
-from rdflib import Graph
-g = Graph()
-g.parse("RiskOnto_v1_revised.owl", format="xml")
-g.parse("WebGoat_SUT.owl", format="turtle")
-# Apply SWRL rules using an OWL 2 RL reasoner (e.g. Pellet, HermiT, owlrl)
-```
-
-Or in Protégé: open `WebGoat_SUT.owl` — it will auto-import `RiskOnto_v1_revised.owl` via the `owl:imports` declaration.
-
----
-
-## Citation
-
-If you use RiskOnto in your research, please cite:
-
-```
-Adelere, M. A. (2026). RiskOnto: A Threat-Informed Risk Reasoning Ontology
-Integrating MITRE ATT&CK, D3FEND, and NIST CSF 2.0.
-University of New Brunswick, Faculty of Computer Science.
-```
-
----
+Contact: Michael Adekunle Adelere (michael.a.adelere@gmail.com)
 
 ## License
 
-This work is part of ongoing PhD research at the University of New Brunswick (UNB).
-All rights reserved pending publication. Contact: michael.a.adelere@gmail.com
+No `LICENSE` file currently exists in the source project archive; none has
+been added to this repository. All rights are reserved by the author unless
+and until an explicit license is added. Ownership and copyright are
+unchanged by the packaging of this repository.
