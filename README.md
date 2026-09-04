@@ -208,6 +208,12 @@ manuscript/    Final manuscript PDF (for citation; source LaTeX is not
 ENVIRONMENT.md Software versions and reproduction steps
 ```
 
+GitHub Linguist classifies the `.owl` artifacts as **XML** because OWL is
+serialized here as RDF/XML and Linguist has no separate Web Ontology Language
+category. The final Revision 2 package does not include the obsolete HTML
+dashboard; the released ontology and research artifacts are the authoritative
+repository contents.
+
 ## 17. How to cite
 
 M. A. Adelere, "RiskOnto: An Ontology-Driven Framework for Threat Modeling,
